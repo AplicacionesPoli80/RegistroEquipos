@@ -15,9 +15,37 @@ import javax.swing.JOptionPane;
  */
 public class GestionMarca extends javax.swing.JDialog {
 
-    /**
-     * Creates new form GestionMarca
-     */
+   private MarcaDao marcaDao;
+    private MarcaPpal marcaPpal;
+    private Marca marcaAnt = null;
+    private boolean updateMode = false;
+    
+    public GestionMarca(MarcaDao ip_marcaDao, MarcaPpal ip_marcaPpal,
+            Marca ip_marcaAnt, boolean ip_updateMode) {
+        initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.marcaDao = ip_marcaDao;
+        this.marcaPpal = ip_marcaPpal;
+        this.marcaAnt = ip_marcaAnt;
+        this.updateMode = ip_updateMode;
+        if (updateMode) {
+            this.setTitle("Actualizar Parámetros");
+            this.lblTitulo.setText("Actualizar Parámetros");
+            llenarFormulario(this.marcaAnt);
+        } else {
+            this.cmbIdTipoEquipo.setEditable(true);
+            this.txtNomMarca.setEditable(true);
+        }
+    }
+   public void llenarFormulario(Marca marca) {
+      //  this.cmbIdTipoEquipo.setText(marca.getIdTipoEquipo());
+        this.txtNomMarca.setText(marca.getNomMarca());
+        this.cmbIdTipoEquipo.setEditable(false);
+    //    this.txt_vlrParam.setEditable(false); 
+    }
+    
+    
     public GestionMarca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -33,22 +61,22 @@ public class GestionMarca extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         lblNomMarca = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtIdTipoEquipo = new javax.swing.JTextField();
+        lblIdeTiEquipo = new javax.swing.JLabel();
+        txtNomMarca = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        cmbNomMarca = new javax.swing.JComboBox<>();
+        cmbIdTipoEquipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("GESTIONAR MARCAS");
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblTitulo.setText("GESTIONAR MARCAS");
 
         lblNomMarca.setText("NOMBRE MARCA");
 
-        jLabel4.setText("IDENTIFICADOR TIPO EQUIPO:");
+        lblIdeTiEquipo.setText("IDENTIFICADOR TIPO EQUIPO:");
 
         btnGuardar.setText("GUARDAR");
 
@@ -72,27 +100,27 @@ public class GestionMarca extends javax.swing.JDialog {
                                 .addComponent(lblNomMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(55, 55, 55))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblIdeTiEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(39, 39, 39)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdTipoEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                            .addComponent(cmbNomMarca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNomMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(cmbIdTipoEquipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(160, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cmbNomMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblIdeTiEquipo)
+                    .addComponent(cmbIdTipoEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomMarca)
-                    .addComponent(txtIdTipoEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
@@ -168,11 +196,11 @@ public class GestionMarca extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> cmbNomMarca;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JComboBox<String> cmbIdTipoEquipo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblIdeTiEquipo;
     private javax.swing.JLabel lblNomMarca;
-    private javax.swing.JTextField txtIdTipoEquipo;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextField txtNomMarca;
     // End of variables declaration//GEN-END:variables
 }

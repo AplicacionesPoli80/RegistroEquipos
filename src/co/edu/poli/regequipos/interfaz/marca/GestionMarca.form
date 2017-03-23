@@ -62,14 +62,14 @@
                                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel4" max="32767" attributes="0"/>
+                                  <Component id="lblIdeTiEquipo" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="129" max="-2" attributes="0"/>
-                              <Component id="txtIdTipoEquipo" alignment="0" pref="157" max="32767" attributes="0"/>
-                              <Component id="cmbNomMarca" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblTitulo" min="-2" pref="129" max="-2" attributes="0"/>
+                              <Component id="txtNomMarca" alignment="0" pref="157" max="32767" attributes="0"/>
+                              <Component id="cmbIdTipoEquipo" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -81,16 +81,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="lblTitulo" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbNomMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblIdeTiEquipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbIdTipoEquipo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblNomMarca" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtIdTipoEquipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNomMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="111" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -103,7 +103,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblTitulo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="1"/>
@@ -116,12 +116,12 @@
             <Property name="text" type="java.lang.String" value="NOMBRE MARCA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblIdeTiEquipo">
           <Properties>
             <Property name="text" type="java.lang.String" value="IDENTIFICADOR TIPO EQUIPO:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtIdTipoEquipo">
+        <Component class="javax.swing.JTextField" name="txtNomMarca">
         </Component>
         <Component class="javax.swing.JButton" name="btnGuardar">
           <Properties>
@@ -133,7 +133,7 @@
             <Property name="text" type="java.lang.String" value="CANCELAR"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbNomMarca">
+        <Component class="javax.swing.JComboBox" name="cmbIdTipoEquipo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>

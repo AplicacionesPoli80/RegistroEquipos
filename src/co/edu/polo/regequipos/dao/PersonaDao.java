@@ -63,4 +63,69 @@ public class PersonaDao {
         }
 
     }
+
+    public void insertarPersona(Persona persona) throws Exception {
+        conexion = new Conexion();
+        con = conexion.conectarBD();
+        PreparedStatement pstm = null;
+        try {
+            pstm = con.prepareStatement("insert into persona values (?,?,?,?,?)");
+            pstm.setString(1, persona.getTipoIdentificacion());
+            pstm.setLong(2, persona.getIdentificacion());
+            pstm.setString(3, persona.getApellidos());
+            pstm.setString(4, persona.getNombres());
+            pstm.setString(5, persona.getTipoPersona());
+            pstm.executeUpdate();/*Ejecutar el cambio en la base de datos*/
+
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            pstm.close();
+            con.close();
+        }
+    }
+
+    public void actualizarPersona(Persona persona) throws Exception {
+        conexion = new Conexion();
+        con = conexion.conectarBD();
+        PreparedStatement pstm = null;
+        try {
+            pstm = con.prepareStatement("update persona set Tipo_identificacion = ?, "
+                    + "apellidos = ?, nombres = ?, tipo_persona = ? "
+                    + "where identificacion = ?");
+            pstm.setString(1, persona.getTipoIdentificacion());
+            pstm.setString(2, persona.getApellidos());
+            pstm.setString(3, persona.getNombres());
+            pstm.setString(4, persona.getTipoPersona());
+            pstm.setLong(5, persona.getIdentificacion());
+
+            pstm.executeUpdate();/*Ejecutar el cambio en la base de datos*/
+
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            pstm.close();
+            con.close();
+        }
+    }
+
+    public void eliminarPersona(Persona persona) throws Exception {
+        conexion = new Conexion();
+        con = conexion.conectarBD();
+        PreparedStatement pstm = null;
+        try {
+            pstm = con.prepareStatement("delete persona where identificacion = ?");
+
+            pstm.setLong(1, persona.getIdentificacion());
+
+            pstm.executeUpdate();/*Ejecutar el cambio en la base de datos*/
+
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            pstm.close();
+            con.close();
+        }
+
+    }
 }

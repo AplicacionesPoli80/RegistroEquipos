@@ -16,9 +16,11 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class PersonaPpal extends javax.swing.JFrame {
+
     /**
      * Crear variable para los metodos Dao de persona
-     **/
+     *
+     */
     private PersonaDao personaDao;
 
     /**
@@ -32,6 +34,7 @@ public class PersonaPpal extends javax.swing.JFrame {
         }
         initComponents();
     }
+
     public void refrescarTabla() {
         try {
             List<Persona> lstPersona = personaDao.consultaPersona(null, null, null);
@@ -209,40 +212,40 @@ public class PersonaPpal extends javax.swing.JFrame {
             }
             int rta = JOptionPane.showConfirmDialog(this, "¿Está seguro de ELIMINAR esta Persona?",
                     "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if(rta!= JOptionPane.YES_OPTION){
+            if (rta != JOptionPane.YES_OPTION) {
                 return;
             }
             Persona tmpPersona = (Persona) this.tbl_personas.getValueAt(row, PersonaModel.OBJECT_COL);
             personaDao.eliminarPersona(tmpPersona);
             refrescarTabla();
             JOptionPane.showMessageDialog(this, "Persona Eliminado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error eliminando Datos: " + e.getMessage(),
-                                          "Error en proceso", JOptionPane.ERROR_MESSAGE);
+                    "Error en proceso", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_eliminar_personaActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        Long identificacion;        
+        Long identificacion;
         String apellidos = this.txt_apellidos.getText();
         String nombres = this.txt_nombres.getText();
         List<Persona> lstPersona = null;
-        
-        try{
-            if(txt_iden!=null){
-                identificacion=Long.parseLong(this.txt_iden.getText());
-            }else{
-                identificacion=0L;
+
+        try {
+            if (txt_iden != null) {
+                identificacion = Long.parseLong(this.txt_iden.getText());
+            } else {
+                identificacion = 0L;
             }
             lstPersona = personaDao.consultaPersona(identificacion != null ? identificacion : identificacion,
                     apellidos != null ? apellidos.toUpperCase() : apellidos,
                     nombres != null ? nombres.toUpperCase() : nombres);
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error consultando Datos: " + e.getMessage(),
-                                          "Error en consulta", JOptionPane.ERROR_MESSAGE);
+                    "Error en consulta", JOptionPane.ERROR_MESSAGE);
         }
-        PersonaModel model= new PersonaModel(lstPersona);
+        PersonaModel model = new PersonaModel(lstPersona);
         tbl_personas.setModel(model);
     }//GEN-LAST:event_btn_buscarActionPerformed
 
@@ -253,22 +256,23 @@ public class PersonaPpal extends javax.swing.JFrame {
             return;
         }
         /*Convierto el objeto en un parametro, mediante el cast*/
-        try{
-        Persona tmpPersona = (Persona) this.tbl_personas.getValueAt(row, PersonaModel.OBJECT_COL);
-        GestionPersonas gp = new GestionPersonas(personaDao, this, tmpPersona, true);
-        gp.setVisible(true);
-        }catch(Exception e){
+        try {
+            Persona tmpPersona = (Persona) this.tbl_personas.getValueAt(row, PersonaModel.OBJECT_COL);
+            GestionPersonas gp = new GestionPersonas(personaDao, this, tmpPersona, true);
+            gp.setVisible(true);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error consultando Datos: " + e.getMessage(),
-                                          "Error en consulta", JOptionPane.ERROR_MESSAGE);        }
+                    "Error en consulta", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn_mod_personaActionPerformed
 
     private void btn_nueva_personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nueva_personaActionPerformed
-        try{
-        GestionPersonas gp = new GestionPersonas(personaDao, this, null, false);
-        gp.setVisible(true);
-        }catch(Exception e){
+        try {
+            GestionPersonas gp = new GestionPersonas(personaDao, this, null, false);
+            gp.setVisible(true);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error consultando Datos: " + e.getMessage(),
-                                          "Error en consulta", JOptionPane.ERROR_MESSAGE);
+                    "Error en consulta", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_nueva_personaActionPerformed
 

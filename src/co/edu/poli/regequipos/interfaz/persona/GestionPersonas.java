@@ -6,11 +6,16 @@
 package co.edu.poli.regequipos.interfaz.persona;
 
 import co.edu.poli.regequipos.conexion.Conexion;
+import co.edu.poli.regequipos.constantes.ConstantesApp;
+import co.edu.poli.regequipos.entidades.Parametros;
 import co.edu.poli.regequipos.entidades.Persona;
+import co.edu.polo.regequipos.dao.ParametrosDao;
 import co.edu.polo.regequipos.dao.PersonaDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +30,8 @@ public class GestionPersonas extends javax.swing.JDialog {
     private PersonaPpal personaPpal;
     private Persona personaAnt = null;
     private boolean updateMode = false;
+    //Otros objetos
+    private ParametrosDao paramDao;
 
     public GestionPersonas(PersonaDao ip_personaDao, PersonaPpal ip_personaPpal,
             Persona ip_personaAnt, boolean ip_updateMode)throws Exception{
@@ -35,8 +42,7 @@ public class GestionPersonas extends javax.swing.JDialog {
         this.personaDao = ip_personaDao;
         this.personaPpal = ip_personaPpal;
         this.personaAnt = ip_personaAnt;
-        this.updateMode = ip_updateMode;
-        llenarTipoIdentificacion();
+        this.updateMode = ip_updateMode;        
         llenarTipoPersona();
         if (updateMode) {
             this.setTitle("Actualizar Persona");
@@ -46,6 +52,8 @@ public class GestionPersonas extends javax.swing.JDialog {
             this.txt_iden.setEditable(true);
             
         }
+        //Cargar combo de tipos de identificación
+        llenarTipoIdentificacion();
     }
 
     public void llenarFormulario(Persona persona) {
@@ -57,27 +65,17 @@ public class GestionPersonas extends javax.swing.JDialog {
         this.txt_iden.setEditable(false);
         
     }
-    public void llenarTipoIdentificacion()  throws Exception{
-        String sql;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        conexion = new Conexion();
-        con = conexion.conectarBD();
-        try {
-            sql = "select tipo_identificacion from persona";
-            pstm = con.prepareStatement(sql);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                cmb_tipo_iden.addItem(rs.getString(""));
+    public void llenarTipoIdentificacion(){
+        List<Parametros> lstParam = new ArrayList();
+        paramDao = new ParametrosDao();
+        try{
+            lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPOS_ID, null, null);
+            for(Parametros p : lstParam){
+                this.cmb_tipo_iden.addItem(p.getParametrosPK().getValorParam()+" - "+p.getDescParam());
             }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error eliminando Datos: " + e.getMessage(),
-                    "Error en proceso", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            pstm.close();
-            rs.close();
-            con.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
     public void llenarTipoPersona() throws Exception{

@@ -47,6 +47,8 @@ public class PersonaModel extends AbstractTableModel{
             return p.getNombres();
         case COL_TIPO_PERSONA:
             return p.getTipoPersona();
+        case OBJECT_COL:
+            return p;
         default:
             return p.getTipoIdentificacion();
         }

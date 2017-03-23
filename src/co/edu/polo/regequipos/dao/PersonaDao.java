@@ -30,8 +30,9 @@ public class PersonaDao {
         ResultSet rs = null;
         conexion = new Conexion();
         con = conexion.conectarBD();
-        try {
+        try {            
             sql = "select IDENTIFICACION, APELLIDOS, NOMBRES from PERSONA where 1=1 ";
+            
             if (identificacion != null) {
                 sql += "AND UPPER(identificacion) like '%" + identificacion + "%'";
             }
@@ -46,7 +47,8 @@ public class PersonaDao {
             rs = pstm.executeQuery();
             while (rs.next()) {
                 p = new Persona();
-                p.setIdentificacion(Long.valueOf(rs.getString("id_param")));
+                //p.setTipoIdentificacion(rs.getString"tipo_identificacion"); Linea por corregir
+                p.setIdentificacion(Long.valueOf(rs.getString("identificacion")));
                 p.setApellidos(rs.getString("apellidos"));
                 p.setNombres(rs.getString("nombres"));
 

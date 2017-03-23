@@ -43,7 +43,7 @@ public class GestionPersonas extends javax.swing.JDialog {
         this.personaPpal = ip_personaPpal;
         this.personaAnt = ip_personaAnt;
         this.updateMode = ip_updateMode;        
-        llenarTipoPersona();
+        
         if (updateMode) {
             this.setTitle("Actualizar Persona");
             this.lbl_titulo.setText("Actualizar Persona");
@@ -54,6 +54,7 @@ public class GestionPersonas extends javax.swing.JDialog {
         }
         //Cargar combo de tipos de identificación
         llenarTipoIdentificacion();
+        llenarTipoPersona();
     }
 
     public void llenarFormulario(Persona persona) {
@@ -78,30 +79,18 @@ public class GestionPersonas extends javax.swing.JDialog {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void llenarTipoPersona() throws Exception{
-        String sql;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        conexion = new Conexion();
-        con = conexion.conectarBD();
-        try {
-            sql = "select tipo_persona from persona";
-            pstm = con.prepareStatement(sql);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                cmb_tipo_iden.addItem(rs.getString(""));
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error eliminando Datos: " + e.getMessage(),
-                    "Error en proceso", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            pstm.close();
-            rs.close();
-            con.close();
+    public void llenarTipoPersona(){
+        List<Parametros> lstParam= new ArrayList();
+        try{
+            lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPO_PERSONA, null, null);
+            for(Parametros p : lstParam)
+                this.cmb_tipo_persona.addItem(p.getParametrosPK().getValorParam()+" - "+p.getDescParam());            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
-    }
     
+    }
     
 
     public GestionPersonas(java.awt.Frame parent, boolean modal) {
@@ -151,6 +140,12 @@ public class GestionPersonas extends javax.swing.JDialog {
         cmb_tipo_iden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_tipo_idenActionPerformed(evt);
+            }
+        });
+
+        cmb_tipo_persona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_tipo_personaActionPerformed(evt);
             }
         });
 
@@ -257,11 +252,11 @@ public class GestionPersonas extends javax.swing.JDialog {
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         if(txt_iden!=null){
-        String tipoIden = this.cmb_tipo_iden.getSelectedItem().toString();
+        String tipoIden = this.cmb_tipo_iden.getSelectedItem().toString().split(" - ")[0];
         Long identificacion=Long.parseLong(this.txt_iden.getText());
         String apellidos = this.txt_apellidos.getText();
         String nombres = this.txt_nombres.getText();
-        String tipoPersona = this.cmb_tipo_persona.getSelectedItem().toString();
+        String tipoPersona = this.cmb_tipo_persona.getSelectedItem().toString().split(" - ")[0];
         Persona persona = null;        
         if (updateMode) {
             persona = personaAnt;
@@ -297,6 +292,10 @@ public class GestionPersonas extends javax.swing.JDialog {
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
        this.setVisible(false);
     }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void cmb_tipo_personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipo_personaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_tipo_personaActionPerformed
 
     /**
      * @param args the command line arguments

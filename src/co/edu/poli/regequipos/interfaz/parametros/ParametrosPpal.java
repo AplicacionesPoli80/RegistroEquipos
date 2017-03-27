@@ -8,6 +8,11 @@ package co.edu.poli.regequipos.interfaz.parametros;
 import co.edu.poli.regequipos.entidades.Parametros;
 import co.edu.poli.regequipos.model.ParametrosModel;
 import co.edu.polo.regequipos.dao.ParametrosDao;
+import com.sun.javafx.css.Stylesheet;
+import com.sun.javafx.css.parser.CSSParser;
+import java.awt.Color;
+
+
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -26,6 +31,11 @@ public class ParametrosPpal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
         initComponents();
+        this.refrescarTabla();
+        /*
+        Estilos
+        */
+        //this.pnl_ppal.setBackground(Color.decode("#AFBFDA"));
     }
 
     public void refrescarTabla() {
@@ -62,31 +72,41 @@ public class ParametrosPpal extends javax.swing.JFrame {
         btn_nuevoParametro = new javax.swing.JButton();
         btn_ModfParam = new javax.swing.JButton();
         btn_ElimParam = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lbl_titulo.setText("Parametros Generales");
+        lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_titulo.setText("Parámetros Generales");
 
-        lbl_idParam.setText("Identificado Parametro:");
+        lbl_idParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_idParam.setText("Identificador Parámetro:");
 
+        txt_IdFiltro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_IdFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_IdFiltroActionPerformed(evt);
             }
         });
 
-        lbl_valParam.setText("Valor Parametro:");
+        lbl_valParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_valParam.setText("Valor Parámetro:");
 
-        jLabel1.setText("Descripcion Parametro:");
+        txt_ValorFiltro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Descripción Parámetro:");
+
+        txt_DescFiltro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_DescFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_DescFiltroActionPerformed(evt);
             }
         });
 
-        btn_buscar.setText("BUSCAR");
+        btn_buscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_buscar.setText("Buscar");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_buscarActionPerformed(evt);
@@ -103,24 +123,35 @@ public class ParametrosPpal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbl_Parametros);
 
-        btn_nuevoParametro.setText("Nuevo Parametro");
+        btn_nuevoParametro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_nuevoParametro.setText("Nuevo Parámetro");
         btn_nuevoParametro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_nuevoParametroActionPerformed(evt);
             }
         });
 
-        btn_ModfParam.setText("Modificar Parametros");
+        btn_ModfParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_ModfParam.setText("Modificar Parámetro");
         btn_ModfParam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ModfParamActionPerformed(evt);
             }
         });
 
-        btn_ElimParam.setText("Eliminar Parametro");
+        btn_ElimParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_ElimParam.setText("Eliminar Parámetro");
         btn_ElimParam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ElimParamActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -131,72 +162,78 @@ public class ParametrosPpal extends javax.swing.JFrame {
             .addGroup(pnl_ppalLayout.createSequentialGroup()
                 .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_ppalLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_ppalLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_idParam, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnl_ppalLayout.createSequentialGroup()
-                                .addComponent(txt_IdFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
-                                .addComponent(lbl_valParam)
-                                .addGap(30, 30, 30)
-                                .addComponent(txt_ValorFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(21, 21, 21)
+                                .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(lbl_idParam, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnl_ppalLayout.createSequentialGroup()
+                                        .addComponent(txt_IdFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(lbl_valParam, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_ValorFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_DescFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(pnl_ppalLayout.createSequentialGroup()
-                                .addComponent(txt_DescFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(119, 119, 119)
-                                .addComponent(btn_buscar))))
-                    .addGroup(pnl_ppalLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(btn_nuevoParametro)
-                        .addGap(43, 43, 43)
-                        .addComponent(btn_ModfParam)
-                        .addGap(39, 39, 39)
-                        .addComponent(btn_ElimParam))
-                    .addGroup(pnl_ppalLayout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(lbl_titulo)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(36, 36, 36)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lbl_titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_ppalLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(240, 240, 240))
+            .addGroup(pnl_ppalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_nuevoParametro, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(btn_ModfParam, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btn_ElimParam, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
         );
         pnl_ppalLayout.setVerticalGroup(
             pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_ppalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_ppalLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_DescFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
-                    .addGroup(pnl_ppalLayout.createSequentialGroup()
-                        .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_idParam, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_IdFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_valParam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_ValorFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addComponent(btn_buscar)))
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(22, 22, 22)
                 .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_nuevoParametro)
-                    .addComponent(btn_ModfParam)
-                    .addComponent(btn_ElimParam))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(lbl_idParam, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_ValorFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_IdFiltro)
+                    .addComponent(lbl_valParam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_DescFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(27, 27, 27)
+                .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_nuevoParametro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ModfParam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ElimParam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_ppal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnl_ppal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,6 +308,13 @@ public class ParametrosPpal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_ElimParamActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.txt_IdFiltro.setText("");
+        this.txt_ValorFiltro.setText("");
+        this.txt_DescFiltro.setText("");
+        this.refrescarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -301,7 +345,16 @@ public class ParametrosPpal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ParametrosPpal().setVisible(true);
+                CSSParser cssParser = new CSSParser();
+                String styling =
+                   "JButton { foreground: red }"+
+                   "JButton#second { font-size: 20pt; foreground: blue }"+
+                   "JButton.italic { font-style: italic; foreground: #008000 }";
+                Stylesheet stylesheet = cssParser.parse(styling);   
+                ParametrosPpal param = new ParametrosPpal();                
+                param.setVisible(true);    
+                
+                
             }
         });
     }
@@ -311,6 +364,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
     private javax.swing.JButton btn_ModfParam;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_nuevoParametro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_idParam;

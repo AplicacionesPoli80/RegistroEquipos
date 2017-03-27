@@ -35,7 +35,7 @@ public class PersonaModel extends AbstractTableModel{
             return 0;
         }
     }
-    public String getColumnNames(int col){
+    public String getColumnName(int col){
         return columnNames[col];
     }
     public Object getValueAt(int row, int col){

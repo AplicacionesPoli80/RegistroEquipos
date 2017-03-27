@@ -167,10 +167,11 @@ public class PersonaPpal extends javax.swing.JFrame {
                     .addComponent(lbl_iden)
                     .addComponent(txt_iden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_nombres)
-                    .addComponent(txt_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscar))
+                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lbl_nombres)
+                        .addComponent(btn_buscar))
+                    .addComponent(txt_nombres, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_apellidos)
@@ -201,6 +202,7 @@ public class PersonaPpal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_eliminar_personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_personaActionPerformed
@@ -232,7 +234,7 @@ public class PersonaPpal extends javax.swing.JFrame {
         List<Persona> lstPersona = null;
 
         try {
-            if (txt_iden != null) {
+            if (txt_iden.getText() !="") {
                 identificacion = Long.parseLong(this.txt_iden.getText());
             } else {
                 identificacion = 0L;
@@ -242,6 +244,7 @@ public class PersonaPpal extends javax.swing.JFrame {
                     nombres != null ? nombres.toUpperCase() : nombres);
 
         } catch (Exception e) {
+
             JOptionPane.showMessageDialog(this, "Error consultando Datos: " + e.getMessage(),
                     "Error en consulta", JOptionPane.ERROR_MESSAGE);
         }

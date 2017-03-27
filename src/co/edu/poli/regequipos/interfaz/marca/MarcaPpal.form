@@ -35,7 +35,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="290" max="32767" attributes="0"/>
+              <EmptySpace pref="284" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,73 +50,63 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblmarca" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                              <Component id="lblNomMarca" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
-                              <Component id="lblIdTipoEquipo" alignment="0" min="-2" pref="181" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="lblIdTipoEquipo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblNomMarca" alignment="0" pref="100" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblTitulo" min="-2" pref="153" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                  <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtNomMarca" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtIdTipoEquipo" alignment="0" pref="145" max="32767" attributes="0"/>
-                                  <Component id="txtIdMarca" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cmb_tipo_equipo" pref="250" max="32767" attributes="0"/>
+                              <Component id="txtNomMarca" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="538" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                          <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jScrollPane1" alignment="0" min="-2" pref="538" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btn_N_marca" min="-2" pref="107" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                           <Component id="btn_M_marca" min="-2" pref="141" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                           <Component id="btn_E_marca" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace pref="41" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="lblTitulo" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblmarca" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtIdMarca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblNomMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNomMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblIdTipoEquipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtIdTipoEquipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmb_tipo_equipo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="123" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="168" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_N_marca" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_M_marca" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_E_marca" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <EmptySpace pref="177" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -124,18 +114,8 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblTitulo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="MARCAS GENERALES"/>
+            <Property name="text" type="java.lang.String" value="GESTIONAR MARCAS"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblmarca">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="IDENTIFICADOR MARCA: "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtIdMarca">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdMarcaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNomMarca">
           <Properties>
@@ -144,15 +124,16 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblIdTipoEquipo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="IDENTIFICADOR TIPO EQUIPO: "/>
+            <Property name="text" type="java.lang.String" value="TIPO EQUIPO: "/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtIdTipoEquipo">
         </Component>
         <Component class="javax.swing.JButton" name="btnBuscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="BUSCAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -195,6 +176,11 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomMarca">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cmb_tipo_equipo">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

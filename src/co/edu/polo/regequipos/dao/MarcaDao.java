@@ -2,6 +2,7 @@ package co.edu.polo.regequipos.dao;
 
 import co.edu.poli.regequipos.conexion.Conexion;
 import co.edu.poli.regequipos.entidades.Marca;
+import co.edu.poli.regequipos.entidades.TipoEquipo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,14 +16,16 @@ public class MarcaDao {
 
     public List<Marca> consultaMarca(String nomMarca) throws Exception {
         List<Marca> lstMarca = new ArrayList<>();
-        Marca m = new Marca();
+        Marca m;
+        TipoEquipo t;
         String sql;
         PreparedStatement pstm = null;
         ResultSet rs = null;
         conexion = new Conexion();
         con = conexion.conectarBD();
         try {
-            sql = "select id_marca, nom_marca, id_tipo_equipo from marca where 1=1";
+            sql = "select m.id_marca, m.nom_marca, m.id_tipo_equipo, t.nom_tipo_equipo from marca m inner join tipo_equipo t on "
+                    + "(m.id_tipo_equipo=t.id_tipo_equipo) where 1=1";
             if (nomMarca != null) {
                 sql += " AND UPPER(nom_marca) like '%" + nomMarca + "%' ";
             }
@@ -30,7 +33,12 @@ public class MarcaDao {
             rs = pstm.executeQuery();
             while (rs.next()) {
                 m = new Marca();
-                m.setNomMarca(rs.getString("nom_Marca"));
+                m.setIdMarca(rs.getInt("id_marca"));
+                m.setNomMarca(rs.getString("nom_marca"));
+                t = new TipoEquipo();
+                t.setIdTipoEquipo(rs.getInt("id_tipo_equipo"));
+                t.setNomTipoEquipo(rs.getString("nom_tipo_equipo"));
+                m.setIdTipoEquipo(t);                
                 lstMarca.add(m);
             }
             return lstMarca;
@@ -51,10 +59,10 @@ public class MarcaDao {
         PreparedStatement pstm = null;
         try {
             //int marca = (TipoEquipo)marca.getIdTipoEquipo();
-            pstm = con.prepareStatement("insert into parametros values (?,?,?)");
-            pstm.setInt(1, marca.getIdMarca());
-            pstm.setString(2, marca.getNomMarca());
-            // pstm.setInt(3, marca.getIdTipoEquipo());
+            pstm = con.prepareStatement("insert into marca (nom_marca, id_tipo_equipo) values (?,?)");
+            pstm.setString(1, marca.getNomMarca());
+            pstm.setInt(2, marca.getIdTipoEquipo().getIdTipoEquipo());
+            
             pstm.executeUpdate();/*Ejecutar el cambio en la base de datos*/
 
         } catch (Exception e) {
@@ -71,10 +79,9 @@ public class MarcaDao {
         PreparedStatement pstm = null;
         try {
             pstm = con.prepareStatement("update Marca set nom_marca = ? "
-                    + "where id_marca = ? and id_tipo_equipo = ?");
+                    + "where id_marca = ? ");
             pstm.setString(1, marca.getNomMarca());
             pstm.setInt(2, marca.getIdMarca());
-            // pstm.setInt(3, marca.getIdTipoEquipo());
             pstm.executeUpdate();/*Ejecutar el cambio en la base de datos*/
 
         } catch (Exception e) {
@@ -91,9 +98,8 @@ public class MarcaDao {
         PreparedStatement pstm = null;
         try {
             pstm = con.prepareStatement("delete from Marca "
-                    + "where id_marca = ? and nom_marca = ?");
-            pstm.setString(1, marca.getNomMarca());
-            pstm.setInt(2, marca.getIdMarca());
+                    + "where id_marca = ?");
+            pstm.setInt(1, marca.getIdMarca());
             pstm.executeUpdate();/*Ejecutar el cambio en la base de datos*/
 
         } catch (Exception e) {

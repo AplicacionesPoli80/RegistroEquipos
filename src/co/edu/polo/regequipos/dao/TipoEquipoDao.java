@@ -31,14 +31,15 @@ public class TipoEquipoDao {
         conexion = new Conexion();
         con = conexion.conectarBD();
         try {
-            sql = "select ID_TIPO_EQUIPO, NOM_TIPO_EQUIPO ";
+            sql = "select ID_TIPO_EQUIPO, NOM_TIPO_EQUIPO from tipo_equipo ";
             if ((nomTipoEquipo != null && nomTipoEquipo.length() > 0)) {
-                sql += "where UPPER(id_tipo_equipo) like '%" + nomTipoEquipo + "%'";                             
+                sql += "where UPPER(nom_tipo_equipo) like '%" + nomTipoEquipo + "%'";                             
             }
             pstm = con.prepareStatement(sql);
             rs = pstm.executeQuery();
             while (rs.next()) {
-                p = new TipoEquipo();                
+                p = new TipoEquipo();     
+                p.setIdTipoEquipo(rs.getInt("id_tipo_equipo"));
                 p.setNomTipoEquipo(rs.getString("nom_tipo_equipo"));
                 lstTipoEquipo.add(p);
             }

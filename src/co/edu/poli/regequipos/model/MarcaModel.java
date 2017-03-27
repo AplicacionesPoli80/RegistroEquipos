@@ -13,9 +13,9 @@ public class MarcaModel extends AbstractTableModel {
     public static final int OBJECT_COL = -1;
     public static final int OBJECT_ID_MARCA = 0;
     public static final int OBJECT_NOM_MARCA = 1;
-    public static final int OBJECT_ID_TIPO_EQUIPO = 2;
+    public static final int OBJECT_NOM_TIPO_EQUIPO = 2;
     
-    private final String[] columnNames = {"ID MARCA", "NOMBRE MARCA", "ID TIPO EQUIPO"};
+    private final String[] columnNames = {"CONSECUTIVO", "NOMBRE MARCA", "TIPO EQUIPO"};
     private List<Marca> lstMarca;
     public MarcaModel(List<Marca>lstMarca){
     this.lstMarca = lstMarca;
@@ -25,7 +25,10 @@ public class MarcaModel extends AbstractTableModel {
     }
     
     public int getRowCount(){
-    return lstMarca.size();
+        if(lstMarca != null && lstMarca.size() > 0)
+            return lstMarca.size();
+        else
+            return 0;
     }
     
     public String getColumnName(int col){
@@ -38,11 +41,10 @@ public class MarcaModel extends AbstractTableModel {
                 return m.getIdMarca();
             case OBJECT_NOM_MARCA:
                 return m.getNomMarca();
-            case OBJECT_ID_TIPO_EQUIPO:
-                return m.getIdTipoEquipo();
+            case OBJECT_NOM_TIPO_EQUIPO:
+                return m.getIdTipoEquipo().getNomTipoEquipo();
             default:
                 return m;
-
         }  
 }
     public Class getColumnClass(int c){

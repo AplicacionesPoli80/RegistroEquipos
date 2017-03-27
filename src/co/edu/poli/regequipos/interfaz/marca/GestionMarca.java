@@ -5,7 +5,11 @@
  */
 package co.edu.poli.regequipos.interfaz.marca;
 import co.edu.poli.regequipos.entidades.Marca;
+import co.edu.poli.regequipos.entidades.TipoEquipo;
 import co.edu.polo.regequipos.dao.MarcaDao;
+import co.edu.polo.regequipos.dao.TipoEquipoDao;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,35 +24,54 @@ public class GestionMarca extends javax.swing.JDialog {
     private Marca marcaAnt = null;
     private boolean updateMode = false;
     
+    private TipoEquipoDao tipoEquipoDao;
+    
     public GestionMarca(MarcaDao ip_marcaDao, MarcaPpal ip_marcaPpal,
             Marca ip_marcaAnt, boolean ip_updateMode) {
-        initComponents();
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);
+        initComponents();        
         this.marcaDao = ip_marcaDao;
         this.marcaPpal = ip_marcaPpal;
         this.marcaAnt = ip_marcaAnt;
         this.updateMode = ip_updateMode;
         if (updateMode) {
-            this.setTitle("Actualizar Parámetros");
-            this.lblTitulo.setText("Actualizar Parámetros");
+            this.setTitle("Actualizar Marcas");
+            this.lblTitulo.setText("Actualizar Marca");
             llenarFormulario(this.marcaAnt);
         } else {
             this.cmbIdTipoEquipo.setEditable(true);
             this.txtNomMarca.setEditable(true);
         }
+        llenarListaTipoEquipos();
     }
    public void llenarFormulario(Marca marca) {
-      //  this.cmbIdTipoEquipo.setText(marca.getIdTipoEquipo());
+        //this.cmbIdTipoEquipo.setText(marca.getIdTipoEquipo());
         this.txtNomMarca.setText(marca.getNomMarca());
         this.cmbIdTipoEquipo.setEditable(false);
-    //    this.txt_vlrParam.setEditable(false); 
     }
     
+   public void llenarListaTipoEquipos(){
+        List<TipoEquipo> lstTipoEquipos = new ArrayList<>();
+        try{
+            this.cmbIdTipoEquipo.addItem("0 - Seleccione");
+            tipoEquipoDao = new TipoEquipoDao();
+            lstTipoEquipos = tipoEquipoDao.consultaTipoEquipo(null);
+            if(lstTipoEquipos!=null && lstTipoEquipos.size()>0){
+                for(TipoEquipo t : lstTipoEquipos){                    
+                    this.cmbIdTipoEquipo.addItem(t.getIdTipoEquipo()+" - "+t.getNomTipoEquipo());
+                }                    
+            }
+            this.cmbIdTipoEquipo.setEditable(false);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
     public GestionMarca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         initComponents();
+        llenarListaTipoEquipos();
     }
 
     /**
@@ -79,8 +102,18 @@ public class GestionMarca extends javax.swing.JDialog {
         lblIdeTiEquipo.setText("IDENTIFICADOR TIPO EQUIPO:");
 
         btnGuardar.setText("GUARDAR");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,6 +180,14 @@ public class GestionMarca extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments

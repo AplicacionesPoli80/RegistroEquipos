@@ -29,7 +29,11 @@ public class PersonaModel extends AbstractTableModel{
         return columnNames.length;
     }
     public int getRowCount(){
-        return lstPersona.size();
+        if(lstPersona != null && lstPersona.size()>0){
+            return lstPersona.size();
+        }else{
+            return 0;
+        }
     }
     public String getColumnNames(int col){
         return columnNames[col];

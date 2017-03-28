@@ -42,7 +42,11 @@ public class GestionPersonas extends javax.swing.JDialog {
         this.personaDao = ip_personaDao;
         this.personaPpal = ip_personaPpal;
         this.personaAnt = ip_personaAnt;
-        this.updateMode = ip_updateMode;        
+        this.updateMode = ip_updateMode;       
+        
+         //Cargar combo de tipos de identificación
+        llenarTipoIdentificacion(null);
+        llenarTipoPersona(null);
         
         if (updateMode) {
             this.setTitle("Actualizar Persona");
@@ -52,44 +56,61 @@ public class GestionPersonas extends javax.swing.JDialog {
             this.txt_iden.setEditable(true);
             
         }
-        //Cargar combo de tipos de identificación
-        llenarTipoIdentificacion();
-        llenarTipoPersona();
+
     }
 
     public void llenarFormulario(Persona persona) {
-        this.cmb_tipo_iden.setSelectedItem(persona.getTipoIdentificacion());
+        llenarTipoIdentificacion(persona.getTipoIdentificacion().toString());
         this.txt_iden.setText(persona.getIdentificacion().toString());
         this.txt_apellidos.setText(persona.getApellidos());
         this.txt_nombres.setText(persona.getNombres());
-        this.cmb_tipo_persona.setSelectedItem(persona.getTipoPersona());
+        llenarTipoPersona(persona.getTipoPersona().toString());
         this.txt_iden.setEditable(false);
         
     }
-    public void llenarTipoIdentificacion(){
+    public void llenarTipoIdentificacion(String iden){
         List<Parametros> lstParam = new ArrayList();
         paramDao = new ParametrosDao();
-        try{
-            lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPOS_ID, null, null);
-            for(Parametros p : lstParam){
-                this.cmb_tipo_iden.addItem(p.getParametrosPK().getValorParam()+" - "+p.getDescParam());
+        try {
+
+            if (iden != null) {
+                lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPOS_ID, iden, null);
+                for (Parametros p : lstParam) {
+                    this.cmb_tipo_iden.setSelectedItem(p.getParametrosPK().getValorParam() + " - " + p.getDescParam());
+                }
+            } else {
+                lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPOS_ID, null, null);
+                for (Parametros p : lstParam) {
+                    this.cmb_tipo_iden.addItem(p.getParametrosPK().getValorParam() + " - " + p.getDescParam());
+                }
             }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage(), "Error",
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void llenarTipoPersona(){
+    public void llenarTipoPersona(String persona){
         List<Parametros> lstParam= new ArrayList();
-        try{
-            lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPO_PERSONA, null, null);
-            for(Parametros p : lstParam)
-                this.cmb_tipo_persona.addItem(p.getParametrosPK().getValorParam()+" - "+p.getDescParam());            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage(), "Error",
+        try {
+
+            if (persona != null) {
+                lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPO_PERSONA, persona, null);
+                for (Parametros p : lstParam) {
+                    this.cmb_tipo_persona.setSelectedItem(p.getParametrosPK().getValorParam() + " - " + p.getDescParam());
+                }
+            } else {
+                lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPO_PERSONA, null, null);
+                for (Parametros p : lstParam) {
+                    this.cmb_tipo_persona.addItem(p.getParametrosPK().getValorParam() + " - " + p.getDescParam());
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-    
+
     }
     
 

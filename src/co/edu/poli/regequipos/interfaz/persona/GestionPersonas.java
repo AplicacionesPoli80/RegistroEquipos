@@ -285,8 +285,10 @@ public class GestionPersonas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Error" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         }
+        else{
         JOptionPane.showMessageDialog(this, "Debe digitar un numero de Identificacion",
                 "Error ", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed

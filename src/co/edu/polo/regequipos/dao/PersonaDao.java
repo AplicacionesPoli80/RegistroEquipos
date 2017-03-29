@@ -117,7 +117,7 @@ public class PersonaDao {
         con = conexion.conectarBD();
         PreparedStatement pstm = null;
         try {
-            pstm = con.prepareStatement("delete persona where identificacion = ?");
+            pstm = con.prepareStatement("delete from persona where identificacion = ?");
 
             pstm.setLong(1, persona.getIdentificacion());
 

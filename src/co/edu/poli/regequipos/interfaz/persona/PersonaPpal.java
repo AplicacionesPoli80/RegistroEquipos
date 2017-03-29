@@ -234,7 +234,7 @@ public class PersonaPpal extends javax.swing.JFrame {
         List<Persona> lstPersona = null;
 
         try {
-            if (txt_iden.getText() !="") {
+            if (txt_iden.getText() !=null && txt_iden.getText().length()>0) {
                 identificacion = Long.parseLong(this.txt_iden.getText());
             } else {
                 identificacion = 0L;

@@ -186,6 +186,36 @@ public class GestionMarca extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+/*
+        String nomMarca = this.txtNomMarca.getText();
+        int idTipoEquipo = this.cmbIdTipoEquipo.getSelectedItem();
+         Marca marca = null;
+        if (updateMode) {
+            marca = marcaAnt;
+            marca.setIdTipoEquipo(idTipoEquipo);
+            marca.setNomMarca(nomMarca);
+        } else {
+            marca = new Marca();
+            marca.setIdTipoEquipo(idTipoEquipo);
+            marca.setNomMarca(nomMarca);
+            
+        }
+
+        try {
+            if (updateMode) {
+                marcaDao.actualizarMarca(marca);
+            } else {
+                marcaDao.insertarMarca(marca);
+            }
+            this.setVisible(false);
+            marcaPpal.refrescarTabla();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error" + e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+*/
+
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 

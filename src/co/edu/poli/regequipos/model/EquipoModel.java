@@ -44,7 +44,7 @@ public class EquipoModel extends AbstractTableModel{
         case COL_TIPO_EQUIPO:
             return e.getIdMarca().getIdTipoEquipo().getNomTipoEquipo();
         case COL_OBSERVACION:
-            return e.getObservaciones();
+            return e.getObservaciones() != null ? e.getObservaciones() : "";
         case OBJECT_COL:
             return e;
         default:

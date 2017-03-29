@@ -32,6 +32,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Registro.findByObservacion", query = "SELECT r FROM Registro r WHERE r.observacion = :observacion")})
 public class Registro implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "USUARIO_INGRESO")
+    private String usuarioIngreso;
+    @Column(name = "USUARIO_SALIDA")
+    private String usuarioSalida;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -126,6 +132,22 @@ public class Registro implements Serializable {
     @Override
     public String toString() {
         return "co.edu.poli.regequipos.entidades.Registro[ idRegistro=" + idRegistro + " ]";
+    }
+
+    public String getUsuarioIngreso() {
+        return usuarioIngreso;
+    }
+
+    public void setUsuarioIngreso(String usuarioIngreso) {
+        this.usuarioIngreso = usuarioIngreso;
+    }
+
+    public String getUsuarioSalida() {
+        return usuarioSalida;
+    }
+
+    public void setUsuarioSalida(String usuarioSalida) {
+        this.usuarioSalida = usuarioSalida;
     }
     
 }

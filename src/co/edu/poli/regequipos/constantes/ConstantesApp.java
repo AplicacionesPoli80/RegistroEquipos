@@ -12,4 +12,6 @@ package co.edu.poli.regequipos.constantes;
 public class ConstantesApp {
     public static String PARAM_TIPOS_ID = "TIPOS_ID";
     public static String PARAM_TIPO_PERSONA = "TIPO_PERSONA";
+    public static String TIPO_CONSULTA_HIST = "HISTORICO";
+    public static String TIPO_CONSULTA_ING = "INGRESOS";
 }

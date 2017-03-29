@@ -68,6 +68,24 @@ public class EquipoDao {
             rs.close();
             con.close();
         }
-
+    }
+    public void insertarEquipo(Equipo equipo) throws Exception {
+        conexion = new Conexion();
+        con = conexion.conectarBD();
+        PreparedStatement pstm = null;
+        try {
+            pstm = con.prepareStatement("insert into equipo values (?,?,?,?)");
+            pstm.setString(1, equipo.getSerial());
+            pstm.setString(2, equipo.getObservaciones());
+            pstm.setInt(3, equipo.getIdMarca().getIdMarca());
+            pstm.setLong(4, equipo.getIdentificacion().getIdentificacion());
+            pstm.executeUpdate();/*Ejecutar el cambio en la base de datos*/
+            
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            pstm.close();
+            con.close();
+        }
     }
 }

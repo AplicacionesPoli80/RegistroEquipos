@@ -221,7 +221,7 @@ public class GestionPersonas extends javax.swing.JDialog {
                         .addComponent(btn_guardar)
                         .addGap(33, 33, 33)
                         .addComponent(btn_cancelar)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         pnl_frm_personaLayout.setVerticalGroup(
             pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

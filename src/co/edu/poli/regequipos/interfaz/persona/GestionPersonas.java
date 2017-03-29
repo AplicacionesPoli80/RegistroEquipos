@@ -9,6 +9,7 @@ import co.edu.poli.regequipos.conexion.Conexion;
 import co.edu.poli.regequipos.constantes.ConstantesApp;
 import co.edu.poli.regequipos.entidades.Parametros;
 import co.edu.poli.regequipos.entidades.Persona;
+import co.edu.poli.regequipos.interfaz.registro.RegistroPpal;
 import co.edu.polo.regequipos.dao.ParametrosDao;
 import co.edu.polo.regequipos.dao.PersonaDao;
 import java.sql.Connection;
@@ -30,11 +31,12 @@ public class GestionPersonas extends javax.swing.JDialog {
     private PersonaPpal personaPpal;
     private Persona personaAnt = null;
     private boolean updateMode = false;
+    private RegistroPpal registroPpal;
     //Otros objetos
     private ParametrosDao paramDao;
 
     public GestionPersonas(PersonaDao ip_personaDao, PersonaPpal ip_personaPpal,
-            Persona ip_personaAnt, boolean ip_updateMode)throws Exception{
+            Persona ip_personaAnt, boolean ip_updateMode) throws Exception {
 
         initComponents();
         this.setResizable(false);
@@ -42,15 +44,38 @@ public class GestionPersonas extends javax.swing.JDialog {
         this.personaDao = ip_personaDao;
         this.personaPpal = ip_personaPpal;
         this.personaAnt = ip_personaAnt;
-        this.updateMode = ip_updateMode;        
-        
+        this.updateMode = ip_updateMode;
+
         if (updateMode) {
             this.setTitle("Actualizar Persona");
             this.lbl_titulo.setText("Actualizar Persona");
             llenarFormulario(this.personaAnt);
         } else {
             this.txt_iden.setEditable(true);
-            
+
+        }
+        //Cargar combo de tipos de identificación
+        llenarTipoIdentificacion();
+        llenarTipoPersona();
+    }
+
+    public GestionPersonas(PersonaDao ip_personaDao, RegistroPpal ip_registroPpal,
+            Long identificacion, boolean ip_updateMode) throws Exception {
+
+        initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.personaDao = ip_personaDao;
+        this.registroPpal = ip_registroPpal;
+        this.updateMode = ip_updateMode;
+
+        if (updateMode) {
+            this.setTitle("Actualizar Persona");
+            this.lbl_titulo.setText("Actualizar Persona");
+            llenarFormulario(this.personaAnt);
+        } else {
+            this.txt_iden.setText(identificacion.toString());
+            this.txt_iden.setEditable(false);
         }
         //Cargar combo de tipos de identificación
         llenarTipoIdentificacion();
@@ -64,34 +89,36 @@ public class GestionPersonas extends javax.swing.JDialog {
         this.txt_nombres.setText(persona.getNombres());
         this.cmb_tipo_persona.setSelectedItem(persona.getTipoPersona());
         this.txt_iden.setEditable(false);
-        
+
     }
-    public void llenarTipoIdentificacion(){
+
+    public void llenarTipoIdentificacion() {
         List<Parametros> lstParam = new ArrayList();
         paramDao = new ParametrosDao();
-        try{
+        try {
             lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPOS_ID, null, null);
-            for(Parametros p : lstParam){
-                this.cmb_tipo_iden.addItem(p.getParametrosPK().getValorParam()+" - "+p.getDescParam());
+            for (Parametros p : lstParam) {
+                this.cmb_tipo_iden.addItem(p.getParametrosPK().getValorParam() + " - " + p.getDescParam());
             }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage(), "Error",
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void llenarTipoPersona(){
-        List<Parametros> lstParam= new ArrayList();
-        try{
+
+    public void llenarTipoPersona() {
+        List<Parametros> lstParam = new ArrayList();
+        try {
             lstParam = paramDao.consultaParametros(ConstantesApp.PARAM_TIPO_PERSONA, null, null);
-            for(Parametros p : lstParam)
-                this.cmb_tipo_persona.addItem(p.getParametrosPK().getValorParam()+" - "+p.getDescParam());            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage(), "Error",
+            for (Parametros p : lstParam) {
+                this.cmb_tipo_persona.addItem(p.getParametrosPK().getValorParam() + " - " + p.getDescParam());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-    
+
     }
-    
 
     public GestionPersonas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -247,50 +274,55 @@ public class GestionPersonas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmb_tipo_idenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipo_idenActionPerformed
-        
+
     }//GEN-LAST:event_cmb_tipo_idenActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-        if(txt_iden!=null){
-        String tipoIden = this.cmb_tipo_iden.getSelectedItem().toString().split(" - ")[0];
-        Long identificacion=Long.parseLong(this.txt_iden.getText());
-        String apellidos = this.txt_apellidos.getText();
-        String nombres = this.txt_nombres.getText();
-        String tipoPersona = this.cmb_tipo_persona.getSelectedItem().toString().split(" - ")[0];
-        Persona persona = null;        
-        if (updateMode) {
-            persona = personaAnt;
-            persona.setTipoIdentificacion(tipoIden);
-            persona.setApellidos(apellidos);
-            persona.setNombres(nombres);
-            persona.setTipoPersona(tipoPersona);
-        } else {
-            persona = new Persona();            
-            persona.setTipoIdentificacion(tipoIden);
-            persona.setIdentificacion(identificacion);
-            persona.setApellidos(apellidos);
-            persona.setNombres(nombres);
-            persona.setTipoPersona(tipoPersona);
-        }
-
-        try {
+        if (txt_iden != null) {
+            String tipoIden = this.cmb_tipo_iden.getSelectedItem().toString().split(" - ")[0];
+            Long identificacion = Long.parseLong(this.txt_iden.getText());
+            String apellidos = this.txt_apellidos.getText();
+            String nombres = this.txt_nombres.getText();
+            String tipoPersona = this.cmb_tipo_persona.getSelectedItem().toString().split(" - ")[0];
+            Persona persona = null;
             if (updateMode) {
-                personaDao.actualizarPersona(persona);
+                persona = personaAnt;
+                persona.setTipoIdentificacion(tipoIden);
+                persona.setApellidos(apellidos);
+                persona.setNombres(nombres);
+                persona.setTipoPersona(tipoPersona);
             } else {
-                personaDao.insertarPersona(persona);
+                persona = new Persona();
+                persona.setTipoIdentificacion(tipoIden);
+                persona.setIdentificacion(identificacion);
+                persona.setApellidos(apellidos);
+                persona.setNombres(nombres);
+                persona.setTipoPersona(tipoPersona);
             }
-            this.setVisible(false);
-            personaPpal.refrescarTabla();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+
+            try {
+                if (updateMode) {
+                    personaDao.actualizarPersona(persona);
+                } else {
+                    personaDao.insertarPersona(persona);
+                }
+                this.setVisible(false);
+                if(personaPpal != null){
+                    personaPpal.refrescarTabla();
+                }
+                if(registroPpal != null){
+                    registroPpal.consultarPersona();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         JOptionPane.showMessageDialog(this, "Debe digitar un numero de Identificacion",
                 "Error ", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void cmb_tipo_personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipo_personaActionPerformed

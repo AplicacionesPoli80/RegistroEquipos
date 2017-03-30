@@ -6,6 +6,7 @@
 package co.edu.poli.regequipos.interfaz.parametros;
 
 import co.edu.poli.regequipos.entidades.Parametros;
+import co.edu.poli.regequipos.interfaz.menu.Menu;
 import co.edu.poli.regequipos.model.ParametrosModel;
 import co.edu.polo.regequipos.dao.ParametrosDao;
 import com.sun.javafx.css.Stylesheet;
@@ -73,6 +74,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
         btn_ModfParam = new javax.swing.JButton();
         btn_ElimParam = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +157,13 @@ public class ParametrosPpal extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_ppalLayout = new javax.swing.GroupLayout(pnl_ppal);
         pnl_ppal.setLayout(pnl_ppalLayout);
         pnl_ppalLayout.setHorizontalGroup(
@@ -197,6 +206,10 @@ public class ParametrosPpal extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(btn_ElimParam, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(108, 108, 108))
+            .addGroup(pnl_ppalLayout.createSequentialGroup()
+                .addGap(367, 367, 367)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_ppalLayout.setVerticalGroup(
             pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +237,9 @@ public class ParametrosPpal extends javax.swing.JFrame {
                     .addComponent(btn_nuevoParametro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ModfParam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ElimParam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                .addGap(13, 13, 13)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -315,6 +330,11 @@ public class ParametrosPpal extends javax.swing.JFrame {
         this.refrescarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Menu m = new Menu();
+        m.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -365,6 +385,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_nuevoParametro;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_idParam;

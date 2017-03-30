@@ -10,7 +10,9 @@ import co.edu.poli.regequipos.constantes.ConstantesApp;
 import co.edu.poli.regequipos.entidades.Equipo;
 import co.edu.poli.regequipos.entidades.Persona;
 import co.edu.poli.regequipos.entidades.Registro;
+import co.edu.poli.regequipos.interfaz.menu.Menu;
 import co.edu.poli.regequipos.interfaz.persona.GestionPersonas;
+import co.edu.poli.regequipos.iterfaz.login.Login;
 import co.edu.poli.regequipos.model.EquipoModel;
 import co.edu.poli.regequipos.model.RegistroModel;
 import co.edu.polo.regequipos.dao.EquipoDao;
@@ -82,6 +84,14 @@ public class RegistroPpal extends javax.swing.JFrame {
         tblHistorico = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Administración de Ingreso y Salida de Equipos");
@@ -286,15 +296,15 @@ public class RegistroPpal extends javax.swing.JFrame {
             pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_registroLayout.createSequentialGroup()
                 .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1)
                     .addGroup(pnl_registroLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pnl_tab_registro))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_registroLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlDatosPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(pnlEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator1))
+                        .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pnl_tab_registro)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_registroLayout.createSequentialGroup()
+                                .addComponent(pnlDatosPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(pnlEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(pnl_registroLayout.createSequentialGroup()
                 .addGap(402, 402, 402)
@@ -311,7 +321,7 @@ public class RegistroPpal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlDatosPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(pnlEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 259, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnl_tab_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(64, Short.MAX_VALUE))
@@ -394,6 +404,15 @@ public class RegistroPpal extends javax.swing.JFrame {
         GestionEquipos ge = new GestionEquipos(equipoDao, this, false, Long.parseLong(this.txt_iden.getText()));
         ge.setVisible(true);
     }//GEN-LAST:event_btnAdicionarEquipoActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+      
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Menu m = new Menu();
+        m.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     public void consultarRegistro(String tipoConsulta){
         List<Registro> lstRegistro = new ArrayList<>();

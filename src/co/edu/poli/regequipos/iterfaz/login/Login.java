@@ -32,8 +32,8 @@ public class Login extends javax.swing.JFrame {
         lbl_usuario = new javax.swing.JLabel();
         txt_usuario = new javax.swing.JTextField();
         lbl_contraseña = new javax.swing.JLabel();
-        txt_contraseña = new javax.swing.JTextField();
         btn_ingresar = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,8 +48,6 @@ public class Login extends javax.swing.JFrame {
         lbl_contraseña.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbl_contraseña.setText("Contraseña:");
 
-        txt_contraseña.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         btn_ingresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_ingresar.setText("INGRESAR");
         btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -57,6 +55,8 @@ public class Login extends javax.swing.JFrame {
                 btn_ingresarActionPerformed(evt);
             }
         });
+
+        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout pnl_PpalLayout = new javax.swing.GroupLayout(pnl_Ppal);
         pnl_Ppal.setLayout(pnl_PpalLayout);
@@ -66,11 +66,11 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_PpalLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnl_PpalLayout.createSequentialGroup()
                                 .addComponent(lbl_contraseña)
                                 .addGap(18, 18, 18)
-                                .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPasswordField1))
                             .addGroup(pnl_PpalLayout.createSequentialGroup()
                                 .addComponent(lbl_usuario)
                                 .addGap(44, 44, 44)
@@ -92,12 +92,12 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(lbl_usuario)
                     .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_contraseña)
-                    .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addComponent(btn_ingresar)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,11 +161,11 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_ingresar;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lbl_contraseña;
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JLabel lbl_usuario;
     private javax.swing.JPanel pnl_Ppal;
-    private javax.swing.JTextField txt_contraseña;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,24 +75,30 @@ public class GestionParametros extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        pnl_frm_param.setBackground(new java.awt.Color(255, 255, 255));
         pnl_frm_param.setPreferredSize(new java.awt.Dimension(399, 231));
 
         lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_titulo.setText("Registro de Parámetros");
+        lbl_titulo.setText("Registro de parámetros");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setText("Identificador:");
 
-        lbl_vlrParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_idParam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        lbl_vlrParam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_vlrParam.setText("Valor:");
 
-        txt_vlrParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_vlrParam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        lbl_desc_param.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_desc_param.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        lbl_desc_param.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_desc_param.setText("Descripcion:");
 
-        btn_guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_guardar.setBackground(new java.awt.Color(26, 84, 147));
+        btn_guardar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btn_guardar.setText("GUARDAR");
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +106,8 @@ public class GestionParametros extends javax.swing.JDialog {
             }
         });
 
-        btn_cancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_cancelar.setBackground(new java.awt.Color(26, 84, 147));
+        btn_cancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btn_cancelar.setText("CANCELAR");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,32 +122,37 @@ public class GestionParametros extends javax.swing.JDialog {
             .addGroup(pnl_frm_paramLayout.createSequentialGroup()
                 .addGroup(pnl_frm_paramLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_frm_paramLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(20, 20, 20)
                         .addGroup(pnl_frm_paramLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl_vlrParam)
-                            .addComponent(lbl_desc_param))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnl_frm_paramLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_desc_param, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_vlrParam, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_idParam, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 35, Short.MAX_VALUE))
-                    .addComponent(lbl_titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_frm_paramLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbl_desc_param)
+                        .addGap(18, 18, 18)))
+                .addGroup(pnl_frm_paramLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_desc_param, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_vlrParam, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_idParam, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(pnl_frm_paramLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
+            .addGroup(pnl_frm_paramLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnl_frm_paramLayout.setVerticalGroup(
             pnl_frm_paramLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_frm_paramLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(22, 22, 22)
                 .addComponent(lbl_titulo)
-                .addGap(35, 35, 35)
+                .addGap(32, 32, 32)
                 .addGroup(pnl_frm_paramLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_idParam, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,14 +175,11 @@ public class GestionParametros extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnl_frm_param, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnl_frm_param, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_frm_param, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnl_frm_param, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
         );
 
         pack();

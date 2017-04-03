@@ -37,8 +37,6 @@ public class Menu extends javax.swing.JFrame {
 
         pnl_Ppal = new javax.swing.JPanel();
         lbl_titulo = new javax.swing.JLabel();
-        lbl_registro = new javax.swing.JLabel();
-        lbl_parametros = new javax.swing.JLabel();
         btn_registro = new javax.swing.JButton();
         btn_equipos = new javax.swing.JButton();
         btn_tipo_equipos = new javax.swing.JButton();
@@ -48,16 +46,13 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        pnl_Ppal.setBackground(new java.awt.Color(255, 255, 255));
+
         lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        lbl_titulo.setText("Menú Opciones");
+        lbl_titulo.setText("Menú módulos");
 
-        lbl_registro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbl_registro.setText("Registro");
-
-        lbl_parametros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbl_parametros.setText("Parametros");
-
-        btn_registro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_registro.setBackground(new java.awt.Color(26, 84, 147));
+        btn_registro.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_registro.setText("Registro");
         btn_registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +60,8 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btn_equipos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_equipos.setBackground(new java.awt.Color(26, 84, 147));
+        btn_equipos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_equipos.setText("Equipos");
         btn_equipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,10 +69,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btn_tipo_equipos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_tipo_equipos.setText("Tipo Equipos");
+        btn_tipo_equipos.setBackground(new java.awt.Color(26, 84, 147));
+        btn_tipo_equipos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_tipo_equipos.setText("Tipo equipos");
 
-        btn_marcas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_marcas.setBackground(new java.awt.Color(26, 84, 147));
+        btn_marcas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_marcas.setText("Marcas");
         btn_marcas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +82,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        btn_personas.setBackground(new java.awt.Color(26, 84, 147));
         btn_personas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_personas.setText("Personas");
         btn_personas.addActionListener(new java.awt.event.ActionListener() {
@@ -92,8 +91,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btn_parametros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_parametros.setText("Parametros");
+        btn_parametros.setBackground(new java.awt.Color(26, 84, 147));
+        btn_parametros.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_parametros.setText("Parámetros");
         btn_parametros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_parametrosActionPerformed(evt);
@@ -106,30 +106,21 @@ public class Menu extends javax.swing.JFrame {
             pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_PpalLayout.createSequentialGroup()
                 .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btn_parametros, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(pnl_PpalLayout.createSequentialGroup()
-                            .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(pnl_PpalLayout.createSequentialGroup()
-                                    .addGap(51, 51, 51)
-                                    .addComponent(btn_registro))
-                                .addGroup(pnl_PpalLayout.createSequentialGroup()
-                                    .addGap(70, 70, 70)
-                                    .addComponent(lbl_registro))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_PpalLayout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(btn_equipos)))
-                            .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(pnl_PpalLayout.createSequentialGroup()
-                                    .addGap(69, 69, 69)
-                                    .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(btn_tipo_equipos)
-                                        .addComponent(btn_marcas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btn_personas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_PpalLayout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lbl_parametros)
-                                    .addGap(21, 21, 21)))))
+                    .addGroup(pnl_PpalLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnl_PpalLayout.createSequentialGroup()
+                                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_equipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_registro, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                                .addGap(39, 39, 39)
+                                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btn_marcas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_personas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnl_PpalLayout.createSequentialGroup()
+                                .addComponent(btn_tipo_equipos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_parametros, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnl_PpalLayout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(lbl_titulo)))
@@ -142,21 +133,17 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(lbl_titulo)
                 .addGap(18, 18, 18)
                 .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_parametros, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_registro)
-                    .addComponent(btn_tipo_equipos))
-                .addGap(18, 18, 18)
+                    .addComponent(btn_marcas))
+                .addGap(15, 15, 15)
                 .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_equipos)
-                    .addComponent(btn_marcas))
+                    .addComponent(btn_personas))
                 .addGap(18, 18, 18)
-                .addComponent(btn_personas)
-                .addGap(18, 18, 18)
-                .addComponent(btn_parametros)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_parametros)
+                    .addComponent(btn_tipo_equipos))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -245,8 +232,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btn_personas;
     private javax.swing.JButton btn_registro;
     private javax.swing.JButton btn_tipo_equipos;
-    private javax.swing.JLabel lbl_parametros;
-    private javax.swing.JLabel lbl_registro;
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JPanel pnl_Ppal;
     // End of variables declaration//GEN-END:variables

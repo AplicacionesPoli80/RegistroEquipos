@@ -37,18 +37,21 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        pnl_Ppal.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbl_titulo.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lbl_titulo.setText("INGRESO");
 
-        lbl_usuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_usuario.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_usuario.setText("Usuario:");
 
-        txt_usuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_usuario.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        lbl_contraseña.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_contraseña.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_contraseña.setText("Contraseña:");
 
-        btn_ingresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_ingresar.setBackground(new java.awt.Color(26, 84, 147));
+        btn_ingresar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_ingresar.setText("INGRESAR");
         btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +59,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPasswordField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout pnl_PpalLayout = new javax.swing.GroupLayout(pnl_Ppal);
         pnl_Ppal.setLayout(pnl_PpalLayout);
@@ -80,7 +83,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(pnl_PpalLayout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addComponent(btn_ingresar)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         pnl_PpalLayout.setVerticalGroup(
             pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,17 +100,14 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addComponent(btn_ingresar)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnl_Ppal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(pnl_Ppal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

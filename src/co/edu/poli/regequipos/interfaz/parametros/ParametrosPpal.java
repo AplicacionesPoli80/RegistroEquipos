@@ -78,36 +78,39 @@ public class ParametrosPpal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        pnl_ppal.setBackground(new java.awt.Color(255, 255, 255));
+
         lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_titulo.setText("Parámetros Generales");
+        lbl_titulo.setText("Parámetros generales");
 
-        lbl_idParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbl_idParam.setText("Identificador Parámetro:");
+        lbl_idParam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lbl_idParam.setText("Identificador parámetro:");
 
-        txt_IdFiltro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_IdFiltro.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txt_IdFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_IdFiltroActionPerformed(evt);
             }
         });
 
-        lbl_valParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbl_valParam.setText("Valor Parámetro:");
+        lbl_valParam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lbl_valParam.setText("Valor parámetro:");
 
         txt_ValorFiltro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Descripción Parámetro:");
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel1.setText("Descripción parámetro:");
 
-        txt_DescFiltro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_DescFiltro.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txt_DescFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_DescFiltroActionPerformed(evt);
             }
         });
 
-        btn_buscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_buscar.setBackground(new java.awt.Color(26, 84, 147));
+        btn_buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +128,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbl_Parametros);
 
+        btn_nuevoParametro.setBackground(new java.awt.Color(26, 84, 147));
         btn_nuevoParametro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_nuevoParametro.setText("Nuevo Parámetro");
         btn_nuevoParametro.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +137,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
             }
         });
 
+        btn_ModfParam.setBackground(new java.awt.Color(26, 84, 147));
         btn_ModfParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_ModfParam.setText("Modificar Parámetro");
         btn_ModfParam.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +146,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
             }
         });
 
+        btn_ElimParam.setBackground(new java.awt.Color(26, 84, 147));
         btn_ElimParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_ElimParam.setText("Eliminar Parámetro");
         btn_ElimParam.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +155,8 @@ public class ParametrosPpal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(26, 84, 147));
+        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton1.setText("Limpiar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +164,8 @@ public class ParametrosPpal extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(26, 84, 147));
+        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setText("Volver");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,13 +225,13 @@ public class ParametrosPpal extends javax.swing.JFrame {
             .addGroup(pnl_ppalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(21, 21, 21)
                 .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_idParam, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_ValorFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_IdFiltro)
-                    .addComponent(lbl_valParam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25)
+                    .addComponent(lbl_valParam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_IdFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
                 .addGroup(pnl_ppalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_DescFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))

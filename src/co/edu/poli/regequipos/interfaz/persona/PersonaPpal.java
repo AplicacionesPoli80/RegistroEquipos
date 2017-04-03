@@ -55,7 +55,6 @@ public class PersonaPpal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField3 = new javax.swing.JTextField();
         pnl_Persona = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lbl_iden = new javax.swing.JLabel();
@@ -71,19 +70,29 @@ public class PersonaPpal extends javax.swing.JFrame {
         btn_mod_persona = new javax.swing.JButton();
         btn_eliminar_persona = new javax.swing.JButton();
 
-        jTextField3.setText("jTextField3");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("PERSONAS GENERAL");
+        pnl_Persona.setBackground(new java.awt.Color(250, 250, 250));
 
-        lbl_iden.setText("Identificacion:");
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setText("Gestión personas");
 
+        lbl_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lbl_iden.setText("Identificación:");
+
+        lbl_nombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_nombres.setText("Nombres:");
 
+        lbl_apellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_apellidos.setText("Apellidos:");
 
+        txt_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txt_nombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txt_apellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        tbl_personas.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         tbl_personas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -94,6 +103,8 @@ public class PersonaPpal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbl_personas);
 
+        btn_buscar.setBackground(new java.awt.Color(26, 84, 147));
+        btn_buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_buscar.setText("BUSCAR");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,21 +112,27 @@ public class PersonaPpal extends javax.swing.JFrame {
             }
         });
 
-        btn_nueva_persona.setText("Nueva Persona");
+        btn_nueva_persona.setBackground(new java.awt.Color(26, 84, 147));
+        btn_nueva_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_nueva_persona.setText("Nueva persona");
         btn_nueva_persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_nueva_personaActionPerformed(evt);
             }
         });
 
-        btn_mod_persona.setText("Modificar Persona");
+        btn_mod_persona.setBackground(new java.awt.Color(26, 84, 147));
+        btn_mod_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_mod_persona.setText("Modificar persona");
         btn_mod_persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_mod_personaActionPerformed(evt);
             }
         });
 
-        btn_eliminar_persona.setText("Eliminar Persona");
+        btn_eliminar_persona.setBackground(new java.awt.Color(26, 84, 147));
+        btn_eliminar_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_eliminar_persona.setText("Eliminar persona");
         btn_eliminar_persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_eliminar_personaActionPerformed(evt);
@@ -126,36 +143,35 @@ public class PersonaPpal extends javax.swing.JFrame {
         pnl_Persona.setLayout(pnl_PersonaLayout);
         pnl_PersonaLayout.setHorizontalGroup(
             pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_PersonaLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_iden)
-                    .addComponent(lbl_apellidos)
-                    .addComponent(lbl_nombres))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_nombres)
-                    .addComponent(txt_iden)
-                    .addComponent(txt_apellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
-                .addGap(54, 54, 54)
-                .addComponent(btn_buscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_PersonaLayout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
-                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnl_PersonaLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(btn_nueva_persona)
-                        .addGap(27, 27, 27)
-                        .addComponent(btn_mod_persona)
-                        .addGap(36, 36, 36)
-                        .addComponent(btn_eliminar_persona)))
-                .addGap(20, 20, 20))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_PersonaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(185, 185, 185))
+            .addGroup(pnl_PersonaLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_PersonaLayout.createSequentialGroup()
+                        .addComponent(btn_nueva_persona)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_mod_persona)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_eliminar_persona))
+                    .addGroup(pnl_PersonaLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_iden)
+                            .addComponent(lbl_apellidos)
+                            .addComponent(lbl_nombres))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_nombres)
+                            .addComponent(txt_iden)
+                            .addComponent(txt_apellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
+                        .addComponent(btn_buscar)
+                        .addGap(33, 33, 33))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         pnl_PersonaLayout.setVerticalGroup(
             pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,16 +184,18 @@ public class PersonaPpal extends javax.swing.JFrame {
                     .addComponent(txt_iden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lbl_nombres)
-                        .addComponent(btn_buscar))
-                    .addComponent(txt_nombres, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_buscar)
+                    .addGroup(pnl_PersonaLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_nombres))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_apellidos)
                     .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_nueva_persona)
@@ -190,15 +208,11 @@ public class PersonaPpal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnl_Persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnl_Persona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnl_Persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnl_Persona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -322,7 +336,6 @@ public class PersonaPpal extends javax.swing.JFrame {
     private javax.swing.JButton btn_nueva_persona;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lbl_apellidos;
     private javax.swing.JLabel lbl_iden;
     private javax.swing.JLabel lbl_nombres;

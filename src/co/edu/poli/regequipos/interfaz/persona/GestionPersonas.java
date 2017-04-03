@@ -150,33 +150,48 @@ public class GestionPersonas extends javax.swing.JDialog {
         btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lbl_titulo.setText("Gestion   Personas");
+        lbl_titulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_titulo.setText("Gestión   personas");
 
+        lbl_tipo_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_tipo_iden.setText("Tipo de Identificacion:");
 
+        lbl_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_iden.setText("Identificacion:");
 
+        lbl_apellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_apellidos.setText("Apellidos:");
 
+        lbl_nombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_nombres.setText("Nombres:");
 
+        lbl_tipo_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_tipo_persona.setText("Tipo de Persona:");
 
+        cmb_tipo_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmb_tipo_iden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_tipo_idenActionPerformed(evt);
             }
         });
 
+        txt_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txt_apellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txt_nombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        cmb_tipo_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmb_tipo_persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_tipo_personaActionPerformed(evt);
             }
         });
 
-        btn_guardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_guardar.setBackground(new java.awt.Color(26, 84, 147));
+        btn_guardar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btn_guardar.setText("GUARDAR");
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,7 +199,8 @@ public class GestionPersonas extends javax.swing.JDialog {
             }
         });
 
-        btn_cancelar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_cancelar.setBackground(new java.awt.Color(26, 84, 147));
+        btn_cancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btn_cancelar.setText("CANCELAR");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,9 +215,6 @@ public class GestionPersonas extends javax.swing.JDialog {
             .addGroup(pnl_frm_personaLayout.createSequentialGroup()
                 .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_frm_personaLayout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(lbl_titulo))
-                    .addGroup(pnl_frm_personaLayout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_tipo_iden)
@@ -209,19 +222,23 @@ public class GestionPersonas extends javax.swing.JDialog {
                             .addComponent(lbl_apellidos)
                             .addComponent(lbl_nombres)
                             .addComponent(lbl_tipo_persona))
-                        .addGap(28, 28, 28)
-                        .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_iden)
+                        .addGap(8, 8, 8)
+                        .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_nombres, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_iden, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_apellidos)
-                            .addComponent(txt_nombres)
-                            .addComponent(cmb_tipo_persona, 0, 110, Short.MAX_VALUE)
-                            .addComponent(cmb_tipo_iden, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cmb_tipo_iden, 0, 154, Short.MAX_VALUE)
+                            .addComponent(cmb_tipo_persona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(pnl_frm_personaLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(btn_guardar)
                         .addGap(33, 33, 33)
                         .addComponent(btn_cancelar)))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_frm_personaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lbl_titulo)
+                .addGap(105, 105, 105))
         );
         pnl_frm_personaLayout.setVerticalGroup(
             pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,25 +269,22 @@ public class GestionPersonas extends javax.swing.JDialog {
                 .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_guardar)
                     .addComponent(btn_cancelar))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnl_frm_persona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pnl_frm_persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnl_frm_persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnl_frm_persona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmb_tipo_idenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipo_idenActionPerformed

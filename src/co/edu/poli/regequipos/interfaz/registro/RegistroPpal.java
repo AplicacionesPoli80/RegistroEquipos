@@ -93,38 +93,42 @@ public class RegistroPpal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        pnl_registro.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Administración de Ingreso y Salida de Equipos");
 
-        pnlDatosPersona.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Persona", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        pnlDatosPersona.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDatosPersona.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Persona", 1, 0, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Nombres:");
 
-        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblNombre.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Apellidos: ");
 
-        lblApellidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblApellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblApellidos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Tipo Persona: ");
 
-        lblTipoPersona.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTipoPersona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblTipoPersona.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("Tipo ID: ");
 
-        lblTipoIden.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTipoIden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblTipoIden.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Identificación: ");
 
+        txt_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txt_iden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idenActionPerformed(evt);
@@ -186,7 +190,8 @@ public class RegistroPpal extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        pnlEquipos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mis Equipos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        pnlEquipos.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEquipos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mis Equipos", 1, 0, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
         tblEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -195,7 +200,8 @@ public class RegistroPpal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblEquipos);
 
-        btnAdicionarEquipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAdicionarEquipo.setBackground(new java.awt.Color(26, 84, 147));
+        btnAdicionarEquipo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnAdicionarEquipo.setLabel("Adicionar Equipo");
         btnAdicionarEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,8 +219,8 @@ public class RegistroPpal extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEquiposLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAdicionarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(263, 263, 263))
+                .addComponent(btnAdicionarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(252, 252, 252))
         );
         pnlEquiposLayout.setVerticalGroup(
             pnlEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,6 +236,7 @@ public class RegistroPpal extends javax.swing.JFrame {
 
         pnl_tab_registro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        pnl_ingresos.setBackground(new java.awt.Color(255, 255, 255));
         pnl_ingresos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         tblIngresos.setModel(new javax.swing.table.DefaultTableModel(
@@ -266,6 +273,7 @@ public class RegistroPpal extends javax.swing.JFrame {
 
         pnl_tab_registro.addTab("Equipos Ingresados", pnl_ingresos);
 
+        pnl_historico.setBackground(new java.awt.Color(255, 255, 255));
         pnl_historico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pnl_historico.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
@@ -342,6 +350,7 @@ public class RegistroPpal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void consultarPersona() {

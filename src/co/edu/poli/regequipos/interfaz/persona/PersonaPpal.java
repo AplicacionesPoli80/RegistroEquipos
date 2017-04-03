@@ -105,6 +105,7 @@ public class PersonaPpal extends javax.swing.JFrame {
 
         btn_buscar.setBackground(new java.awt.Color(26, 84, 147));
         btn_buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
         btn_buscar.setText("BUSCAR");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +115,7 @@ public class PersonaPpal extends javax.swing.JFrame {
 
         btn_nueva_persona.setBackground(new java.awt.Color(26, 84, 147));
         btn_nueva_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_nueva_persona.setForeground(new java.awt.Color(255, 255, 255));
         btn_nueva_persona.setText("Nueva persona");
         btn_nueva_persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +125,7 @@ public class PersonaPpal extends javax.swing.JFrame {
 
         btn_mod_persona.setBackground(new java.awt.Color(26, 84, 147));
         btn_mod_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_mod_persona.setForeground(new java.awt.Color(255, 255, 255));
         btn_mod_persona.setText("Modificar persona");
         btn_mod_persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +135,7 @@ public class PersonaPpal extends javax.swing.JFrame {
 
         btn_eliminar_persona.setBackground(new java.awt.Color(26, 84, 147));
         btn_eliminar_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_eliminar_persona.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar_persona.setText("Eliminar persona");
         btn_eliminar_persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

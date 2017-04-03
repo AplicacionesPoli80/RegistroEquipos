@@ -18,10 +18,15 @@ import co.edu.poli.regequipos.model.RegistroModel;
 import co.edu.polo.regequipos.dao.EquipoDao;
 import co.edu.polo.regequipos.dao.PersonaDao;
 import co.edu.polo.regequipos.dao.RegistroDao;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
@@ -35,8 +40,10 @@ public class RegistroPpal extends javax.swing.JFrame {
     GestionPersonas gestionPer;
     EquipoDao equipoDao;
     RegistroDao registroDao;
-    
+    List<Registro> lstRegistro;    
+    List<Registro> lstHistorico;   
     List<Equipo> lstEquipo = new ArrayList<>();
+    private static final String IMG_PATH = "src/imagenes/home.png";
     /**
      * Creates new form RegistroPpal
      */
@@ -44,6 +51,13 @@ public class RegistroPpal extends javax.swing.JFrame {
         initComponents();
         this.txt_iden.setFocusable(true);
         
+         try {
+            BufferedImage img = ImageIO.read(new File(IMG_PATH));
+            ImageIcon icon = new ImageIcon(img);
+            this.lblHome.setIcon(icon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     
@@ -82,6 +96,7 @@ public class RegistroPpal extends javax.swing.JFrame {
         pnl_historico = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblHistorico = new javax.swing.JTable();
+        lblHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -96,10 +111,10 @@ public class RegistroPpal extends javax.swing.JFrame {
         pnl_registro.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("Administración de Ingreso y Salida de Equipos");
+        jLabel1.setText("Administración de ingreso y salida de equipos");
 
         pnlDatosPersona.setBackground(new java.awt.Color(255, 255, 255));
-        pnlDatosPersona.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Persona", 1, 0, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        pnlDatosPersona.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos persona", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Nombres:");
@@ -114,7 +129,7 @@ public class RegistroPpal extends javax.swing.JFrame {
         lblApellidos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setText("Tipo Persona: ");
+        jLabel6.setText("Tipo persona: ");
 
         lblTipoPersona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblTipoPersona.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -191,7 +206,7 @@ public class RegistroPpal extends javax.swing.JFrame {
         );
 
         pnlEquipos.setBackground(new java.awt.Color(255, 255, 255));
-        pnlEquipos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mis Equipos", 1, 0, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        pnlEquipos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mis equipos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
         tblEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -202,7 +217,8 @@ public class RegistroPpal extends javax.swing.JFrame {
 
         btnAdicionarEquipo.setBackground(new java.awt.Color(26, 84, 147));
         btnAdicionarEquipo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnAdicionarEquipo.setLabel("Adicionar Equipo");
+        btnAdicionarEquipo.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdicionarEquipo.setText("Adicionar equipo");
         btnAdicionarEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdicionarEquipoActionPerformed(evt);
@@ -271,7 +287,7 @@ public class RegistroPpal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnl_tab_registro.addTab("Equipos Ingresados", pnl_ingresos);
+        pnl_tab_registro.addTab("Equipos ingresados", pnl_ingresos);
 
         pnl_historico.setBackground(new java.awt.Color(255, 255, 255));
         pnl_historico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -296,36 +312,48 @@ public class RegistroPpal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnl_tab_registro.addTab("Histórico de Ingresos", pnl_historico);
+        pnl_tab_registro.addTab("Histórico de ingresos", pnl_historico);
+
+        lblHome.setPreferredSize(new java.awt.Dimension(32, 32));
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHomeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_registroLayout = new javax.swing.GroupLayout(pnl_registro);
         pnl_registro.setLayout(pnl_registroLayout);
         pnl_registroLayout.setHorizontalGroup(
             pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_registroLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1)
-                    .addGroup(pnl_registroLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(pnl_tab_registro)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_registroLayout.createSequentialGroup()
-                                .addComponent(pnlDatosPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(pnlEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(pnl_tab_registro)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_registroLayout.createSequentialGroup()
+                        .addComponent(pnlDatosPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(pnlEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(pnl_registroLayout.createSequentialGroup()
-                .addGap(402, 402, 402)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_registroLayout.createSequentialGroup()
+                        .addGap(402, 402, 402)
+                        .addComponent(jLabel1))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1081, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnl_registroLayout.setVerticalGroup(
             pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_registroLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnl_registroLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlDatosPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -386,7 +414,22 @@ public class RegistroPpal extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_idenActionPerformed
 
     private void tblIngresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblIngresosMouseClicked
-        
+       int row = this.tblIngresos.getSelectedRow();
+       Registro r = this.lstRegistro.get(row);
+       String mensaje = "Dar salida a "+r.getSerial().getIdMarca().getIdTipoEquipo().getNomTipoEquipo()+" "+
+               r.getSerial().getIdMarca().getNomMarca()+" con Serial "+r.getSerial().getSerial();
+       int rta = JOptionPane.showConfirmDialog(this, mensaje, "Confirmación",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+       if(rta != JOptionPane.NO_OPTION){
+           try {
+               //Dar Salida al Equipo
+               registroDao.actualizarRegistro(r);
+               
+               consultarRegistro(ConstantesApp.TIPO_CONSULTA_ING);
+               consultarRegistro(ConstantesApp.TIPO_CONSULTA_HIST);
+           } catch (Exception ex) {
+               JOptionPane.showMessageDialog(this, "Error: "+ex.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+           }
+       }
     }//GEN-LAST:event_tblIngresosMouseClicked
 
     private void tblEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEquiposMouseClicked
@@ -403,6 +446,7 @@ public class RegistroPpal extends javax.swing.JFrame {
                registroDao.insertarRegistro(r);
                
                consultarRegistro(ConstantesApp.TIPO_CONSULTA_ING);
+               consultarRegistro(ConstantesApp.TIPO_CONSULTA_HIST);
            } catch (Exception ex) {
                JOptionPane.showMessageDialog(this, "Error: "+ex.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
            }
@@ -423,20 +467,35 @@ public class RegistroPpal extends javax.swing.JFrame {
         m.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
+        this.setVisible(false);
+        Menu m = new Menu();
+        m.setVisible(true);
+    }//GEN-LAST:event_lblHomeMouseClicked
+
     public void consultarRegistro(String tipoConsulta){
-        List<Registro> lstRegistro = new ArrayList<>();
+        
         registroDao = new RegistroDao();
         try{
-            lstRegistro = registroDao.consultarRegistro(tipoConsulta, Long.parseLong(this.txt_iden.getText()));
-            if(lstRegistro != null && lstRegistro.size() > 0){
-                RegistroModel model = new RegistroModel(lstRegistro);
-                if(ConstantesApp.TIPO_CONSULTA_ING.equals(tipoConsulta)){
-                    this.tblIngresos.setModel(model);
-                }
-                if(ConstantesApp.TIPO_CONSULTA_HIST.equals(tipoConsulta)){
-                    this.tblHistorico.setModel(model);
+            if(ConstantesApp.TIPO_CONSULTA_ING.equals(tipoConsulta)){
+                lstRegistro = new ArrayList<>();
+                lstRegistro = registroDao.consultarRegistro(tipoConsulta, Long.parseLong(this.txt_iden.getText()));
+                if(lstRegistro != null && lstRegistro.size() > 0){
+                    RegistroModel model = new RegistroModel(lstRegistro);
+                     this.tblIngresos.setModel(model);
                 }
             }
+            if(ConstantesApp.TIPO_CONSULTA_HIST.equals(tipoConsulta)){
+                lstHistorico = new ArrayList<>();
+                lstHistorico = registroDao.consultarRegistro(tipoConsulta, Long.parseLong(this.txt_iden.getText()));
+                if(lstHistorico != null && lstHistorico.size() > 0){
+                    RegistroModel model = new RegistroModel(lstHistorico);
+                     this.tblHistorico.setModel(model);
+                }
+                
+            }
+            
+           
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error: "+e.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -517,6 +576,7 @@ public class RegistroPpal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblApellidos;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTipoIden;
     private javax.swing.JLabel lblTipoPersona;

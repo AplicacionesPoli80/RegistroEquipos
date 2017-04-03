@@ -107,4 +107,28 @@ public class RegistroDao {
             con.close();
         }
     }
+    
+    public void actualizarRegistro(Registro registro) throws Exception {
+        conexion = new Conexion();
+        con = conexion.conectarBD();
+        PreparedStatement pstm = null;
+        try {
+            pstm = con.prepareStatement("update registro set fecha_salida = ?, usuario_salida = ? "
+                    + " where id_registro = ?");            
+            Calendar calendar = Calendar.getInstance();
+            java.util.Date currentDate = calendar.getTime();
+            java.sql.Date date = new java.sql.Date(currentDate.getTime());
+
+            pstm.setDate(1, date);
+            pstm.setString(2, "admin");
+            pstm.setInt(3, registro.getIdRegistro());
+            pstm.executeUpdate();
+            
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            pstm.close();
+            con.close();
+        }
+    }
 }

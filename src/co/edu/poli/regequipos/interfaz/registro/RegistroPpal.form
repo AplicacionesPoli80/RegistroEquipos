@@ -52,26 +52,28 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="pnl_tab_registro" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="pnlDatosPersona" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Component id="pnlEquipos" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Component id="pnl_tab_registro" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="pnlDatosPersona" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="pnlEquipos" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="402" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="402" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jSeparator1" alignment="0" min="-2" pref="1081" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="lblHome" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,9 +81,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lblHome" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="pnlDatosPersona" max="32767" attributes="0"/>
@@ -100,7 +107,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Administraci&#xf3;n de Ingreso y Salida de Equipos"/>
+            <Property name="text" type="java.lang.String" value="Administraci&#xf3;n de ingreso y salida de equipos"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="pnlDatosPersona">
@@ -110,7 +117,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder justification="1" title="Datos Persona">
+                <TitledBorder justification="1" title="Datos persona">
                   <Font PropertyName="font" name="Tahoma" size="14" style="1"/>
                 </TitledBorder>
               </Border>
@@ -227,7 +234,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tipo Persona: "/>
+                <Property name="text" type="java.lang.String" value="Tipo persona: "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTipoPersona">
@@ -281,7 +288,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder justification="1" title="Mis Equipos">
+                <TitledBorder justification="1" title="Mis equipos">
                   <Font PropertyName="font" name="Arial" size="14" style="1"/>
                 </TitledBorder>
               </Border>
@@ -338,7 +345,10 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="1"/>
                 </Property>
-                <Property name="label" type="java.lang.String" value="Adicionar Equipo"/>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Adicionar equipo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdicionarEquipoActionPerformed"/>
@@ -375,8 +385,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Equipos Ingresados">
-                    <Property name="tabTitle" type="java.lang.String" value="Equipos Ingresados"/>
+                  <JTabbedPaneConstraints tabName="Equipos ingresados">
+                    <Property name="tabTitle" type="java.lang.String" value="Equipos ingresados"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -439,8 +449,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Hist&#xf3;rico de Ingresos">
-                    <Property name="tabTitle" type="java.lang.String" value="Hist&#xf3;rico de Ingresos"/>
+                  <JTabbedPaneConstraints tabName="Hist&#xf3;rico de ingresos">
+                    <Property name="tabTitle" type="java.lang.String" value="Hist&#xf3;rico de ingresos"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -481,6 +491,16 @@
             </Container>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="lblHome">
+          <Properties>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[32, 32]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblHomeMouseClicked"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

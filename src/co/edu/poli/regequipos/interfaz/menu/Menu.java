@@ -53,6 +53,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_registro.setBackground(new java.awt.Color(26, 84, 147));
         btn_registro.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_registro.setForeground(new java.awt.Color(255, 255, 255));
         btn_registro.setText("Registro");
         btn_registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +63,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_equipos.setBackground(new java.awt.Color(26, 84, 147));
         btn_equipos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_equipos.setForeground(new java.awt.Color(255, 255, 255));
         btn_equipos.setText("Equipos");
         btn_equipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,10 +73,12 @@ public class Menu extends javax.swing.JFrame {
 
         btn_tipo_equipos.setBackground(new java.awt.Color(26, 84, 147));
         btn_tipo_equipos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_tipo_equipos.setForeground(new java.awt.Color(255, 255, 255));
         btn_tipo_equipos.setText("Tipo equipos");
 
         btn_marcas.setBackground(new java.awt.Color(26, 84, 147));
         btn_marcas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_marcas.setForeground(new java.awt.Color(255, 255, 255));
         btn_marcas.setText("Marcas");
         btn_marcas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +88,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_personas.setBackground(new java.awt.Color(26, 84, 147));
         btn_personas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_personas.setForeground(new java.awt.Color(255, 255, 255));
         btn_personas.setText("Personas");
         btn_personas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +98,7 @@ public class Menu extends javax.swing.JFrame {
 
         btn_parametros.setBackground(new java.awt.Color(26, 84, 147));
         btn_parametros.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_parametros.setForeground(new java.awt.Color(255, 255, 255));
         btn_parametros.setText("Parámetros");
         btn_parametros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

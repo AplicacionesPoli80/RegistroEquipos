@@ -52,6 +52,7 @@ public class Login extends javax.swing.JFrame {
 
         btn_ingresar.setBackground(new java.awt.Color(26, 84, 147));
         btn_ingresar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_ingresar.setForeground(new java.awt.Color(255, 255, 255));
         btn_ingresar.setText("INGRESAR");
         btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

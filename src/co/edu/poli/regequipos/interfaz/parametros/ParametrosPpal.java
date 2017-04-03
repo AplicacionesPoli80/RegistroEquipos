@@ -111,6 +111,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
 
         btn_buscar.setBackground(new java.awt.Color(26, 84, 147));
         btn_buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
         btn_buscar.setText("Buscar");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +131,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
 
         btn_nuevoParametro.setBackground(new java.awt.Color(26, 84, 147));
         btn_nuevoParametro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_nuevoParametro.setForeground(new java.awt.Color(255, 255, 255));
         btn_nuevoParametro.setText("Nuevo Parámetro");
         btn_nuevoParametro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +141,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
 
         btn_ModfParam.setBackground(new java.awt.Color(26, 84, 147));
         btn_ModfParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_ModfParam.setForeground(new java.awt.Color(255, 255, 255));
         btn_ModfParam.setText("Modificar Parámetro");
         btn_ModfParam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +151,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
 
         btn_ElimParam.setBackground(new java.awt.Color(26, 84, 147));
         btn_ElimParam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_ElimParam.setForeground(new java.awt.Color(255, 255, 255));
         btn_ElimParam.setText("Eliminar Parámetro");
         btn_ElimParam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +161,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(26, 84, 147));
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Limpiar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +171,7 @@ public class ParametrosPpal extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(26, 84, 147));
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Volver");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

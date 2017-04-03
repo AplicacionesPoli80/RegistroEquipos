@@ -152,6 +152,8 @@ public class GestionPersonas extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
+        pnl_frm_persona.setBackground(new java.awt.Color(255, 255, 255));
+
         lbl_titulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lbl_titulo.setText("Gestión   personas");
 
@@ -192,6 +194,7 @@ public class GestionPersonas extends javax.swing.JDialog {
 
         btn_guardar.setBackground(new java.awt.Color(26, 84, 147));
         btn_guardar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_guardar.setForeground(new java.awt.Color(255, 255, 255));
         btn_guardar.setText("GUARDAR");
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +204,7 @@ public class GestionPersonas extends javax.swing.JDialog {
 
         btn_cancelar.setBackground(new java.awt.Color(26, 84, 147));
         btn_cancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
         btn_cancelar.setText("CANCELAR");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,18 +231,19 @@ public class GestionPersonas extends javax.swing.JDialog {
                             .addComponent(txt_nombres, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_iden, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_apellidos)
-                            .addComponent(cmb_tipo_iden, 0, 154, Short.MAX_VALUE)
-                            .addComponent(cmb_tipo_persona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cmb_tipo_persona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmb_tipo_iden, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(pnl_frm_personaLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(btn_guardar)
-                        .addGap(33, 33, 33)
-                        .addComponent(btn_cancelar)))
-                .addGap(47, 47, 47))
+                        .addGap(46, 46, 46)
+                        .addComponent(btn_cancelar)
+                        .addGap(0, 64, Short.MAX_VALUE)))
+                .addGap(22, 22, 22))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_frm_personaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lbl_titulo)
-                .addGap(105, 105, 105))
+                .addGap(131, 131, 131))
         );
         pnl_frm_personaLayout.setVerticalGroup(
             pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,18 +274,22 @@ public class GestionPersonas extends javax.swing.JDialog {
                 .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_guardar)
                     .addComponent(btn_cancelar))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_frm_persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnl_frm_persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_frm_persona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnl_frm_persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

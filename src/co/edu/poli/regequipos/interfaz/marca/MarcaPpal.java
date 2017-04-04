@@ -265,7 +265,7 @@ public class MarcaPpal extends javax.swing.JFrame {
        
         int row = this.tblMarca.getSelectedRow();
         if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Debe Seleccionar un parametro", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una marca", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
     /**    Marca tmpMarca = (Marca) this.tblMarca.getValueAt(row, MarcaModel.OBJECT_COL);
@@ -280,7 +280,7 @@ public class MarcaPpal extends javax.swing.JFrame {
         try {
             int row = this.tblMarca.getSelectedRow();
             if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Debe Seleccionar un parametro", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Debe seleccionar una marca", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }int rta = JOptionPane.showConfirmDialog(this, "¿Está seguro de ELIMINAR este parametro?",
                     "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);

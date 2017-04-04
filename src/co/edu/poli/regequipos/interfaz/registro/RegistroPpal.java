@@ -263,6 +263,7 @@ public class RegistroPpal extends javax.swing.JFrame {
 
             }
         ));
+        tblIngresos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         tblIngresos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblIngresosMouseClicked(evt);
@@ -482,7 +483,10 @@ public class RegistroPpal extends javax.swing.JFrame {
                 lstRegistro = registroDao.consultarRegistro(tipoConsulta, Long.parseLong(this.txt_iden.getText()));
                 if(lstRegistro != null && lstRegistro.size() > 0){
                     RegistroModel model = new RegistroModel(lstRegistro);
-                     this.tblIngresos.setModel(model);
+                    this.tblIngresos.setModel(model);
+                    this.tblIngresos.getColumnModel().getColumn(1).setWidth(100);
+                }else{
+                   this.tblIngresos.setModel(new RegistroModel(new ArrayList<>())); 
                 }
             }
             if(ConstantesApp.TIPO_CONSULTA_HIST.equals(tipoConsulta)){

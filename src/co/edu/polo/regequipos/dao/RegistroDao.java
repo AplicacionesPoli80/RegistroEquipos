@@ -54,8 +54,8 @@ public class RegistroDao {
             while (rs.next()) {
                 r = new Registro();
                 r.setIdRegistro(rs.getInt("id_registro"));
-                r.setFechaIngreso(rs.getDate("fecha_ingreso"));
-                r.setFechaSalida(rs.getDate("fecha_salida"));
+                r.setFechaIngreso(rs.getTimestamp("fecha_ingreso"));
+                r.setFechaSalida(rs.getTimestamp("fecha_salida"));
                 r.setObservacion(rs.getString("observacion"));
                 Equipo e = new Equipo();
                 e.setSerial(rs.getString("serial"));                
@@ -92,8 +92,8 @@ public class RegistroDao {
             java.util.Date currentDate = calendar.getTime();
             java.sql.Date date = new java.sql.Date(currentDate.getTime());
 
-            pstm.setDate(1, date);
-            pstm.setDate(2, null);
+            pstm.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()));
+            pstm.setTimestamp(2, null);
             pstm.setString(3, null);
             pstm.setString(4, registro.getSerial().getSerial());
             pstm.setString(5, "user");
@@ -119,7 +119,7 @@ public class RegistroDao {
             java.util.Date currentDate = calendar.getTime();
             java.sql.Date date = new java.sql.Date(currentDate.getTime());
 
-            pstm.setDate(1, date);
+            pstm.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()));
             pstm.setString(2, "admin");
             pstm.setInt(3, registro.getIdRegistro());
             pstm.executeUpdate();

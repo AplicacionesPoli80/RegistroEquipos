@@ -6,6 +6,7 @@
 package co.edu.poli.regequipos.model;
 
 import co.edu.poli.regequipos.entidades.Registro;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -50,9 +51,9 @@ public class RegistroModel extends AbstractTableModel{
         case COL_DESC_EQUIPO:
             return r.getSerial().getIdMarca().getIdTipoEquipo().getNomTipoEquipo()+" - "+r.getSerial().getIdMarca().getNomMarca();
         case COL_INGRESO:
-            return r.getFechaIngreso();
+            return new SimpleDateFormat("MM/dd/yyyy K:mm:ss a").format(r.getFechaIngreso());
         case COL_SALIDA:
-            return r.getFechaSalida() != null ? r.getFechaSalida() : "";
+            return r.getFechaSalida() != null ? new SimpleDateFormat("MM/dd/yyyy K:mm:ss a").format(r.getFechaSalida()) : "";
         case COL_REG_INGRESO:
             return r.getUsuarioIngreso();
         case COL_REG_SALIDA:

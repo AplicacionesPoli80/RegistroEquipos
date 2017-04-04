@@ -1,6 +1,7 @@
 package co.edu.poli.regequipos.entidades;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -47,10 +48,10 @@ public class Registro implements Serializable {
     @Basic(optional = false)
     @Column(name = "FECHA_INGRESO")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaIngreso;
+    private Timestamp fechaIngreso;
     @Column(name = "FECHA_SALIDA")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaSalida;
+    private Timestamp fechaSalida;
     @Column(name = "OBSERVACION")
     private String observacion;
     @JoinColumn(name = "SERIAL", referencedColumnName = "SERIAL")
@@ -64,7 +65,7 @@ public class Registro implements Serializable {
         this.idRegistro = idRegistro;
     }
 
-    public Registro(Integer idRegistro, Date fechaIngreso) {
+    public Registro(Integer idRegistro, Timestamp fechaIngreso) {
         this.idRegistro = idRegistro;
         this.fechaIngreso = fechaIngreso;
     }
@@ -77,19 +78,19 @@ public class Registro implements Serializable {
         this.idRegistro = idRegistro;
     }
 
-    public Date getFechaIngreso() {
+    public Timestamp getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(Timestamp fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Date getFechaSalida() {
+    public Timestamp getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(Date fechaSalida) {
+    public void setFechaSalida(Timestamp fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 

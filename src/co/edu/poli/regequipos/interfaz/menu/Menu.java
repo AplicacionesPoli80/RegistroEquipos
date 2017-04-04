@@ -10,6 +10,11 @@ import co.edu.poli.regequipos.interfaz.marca.MarcaPpal;
 import co.edu.poli.regequipos.interfaz.parametros.ParametrosPpal;
 import co.edu.poli.regequipos.interfaz.persona.PersonaPpal;
 import co.edu.poli.regequipos.interfaz.registro.RegistroPpal;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,9 +28,44 @@ public class Menu extends javax.swing.JFrame {
     ParametrosPpal parametrosPpal;
     MarcaPpal marcaPpal;
     GestionEquipos gestionEquipos;
-    
+
+    private static final String IMG_REGISTRO = "src/imagenes/registro.jpg";
+    private static final String IMG_PERSONAS= "src/imagenes/personas.png";
+    private static final String IMG_MARCAS= "src/imagenes/marcas.jpg";
+    private static final String IMG_PARAMETROS= "src/imagenes/parametros.png";
+    private static final String IMG_TIPO_EQUIPO= "src/imagenes/tiposEquipo.jpg";
+
     public Menu() {
         initComponents();
+
+        try {
+            BufferedImage img = ImageIO.read(new File(IMG_REGISTRO));
+            ImageIcon icon = new ImageIcon(img);  
+            icon.setDescription("Registro de equipos");            
+            this.lblRegistro.setIcon(icon);
+            //Imagen para Personas
+            img = ImageIO.read(new File(IMG_PERSONAS));
+            icon = new ImageIcon(img);  
+            icon.setDescription("Registro de Personas");            
+            this.lblPersonas.setIcon(icon);
+            //Imagen para marcas            
+            img = ImageIO.read(new File(IMG_MARCAS));
+            icon = new ImageIcon(img);  
+            icon.setDescription("Registro de Marcas");            
+            this.lblMarcas.setIcon(icon);
+            //Imagen para parámetros            
+            img = ImageIO.read(new File(IMG_PARAMETROS));
+            icon = new ImageIcon(img);  
+            icon.setDescription("Registro de Parámetros");            
+            this.lblParametros.setIcon(icon);
+            //Imagen para tipos de equipos            
+            img = ImageIO.read(new File(IMG_TIPO_EQUIPO));
+            icon = new ImageIcon(img);  
+            icon.setDescription("Registro de Tipos de Equipos");            
+            this.lblTipoEquipo.setIcon(icon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -39,63 +79,54 @@ public class Menu extends javax.swing.JFrame {
 
         pnl_Ppal = new javax.swing.JPanel();
         lbl_titulo = new javax.swing.JLabel();
-        btn_registro = new javax.swing.JButton();
-        btn_tipo_equipos = new javax.swing.JButton();
-        btn_marcas = new javax.swing.JButton();
-        btn_personas = new javax.swing.JButton();
-        btn_parametros = new javax.swing.JButton();
+        lblRegistro = new javax.swing.JLabel();
+        lblPersonas = new javax.swing.JLabel();
+        lblMarcas = new javax.swing.JLabel();
+        lblParametros = new javax.swing.JLabel();
+        lblTipoEquipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnl_Ppal.setBackground(new java.awt.Color(255, 255, 255));
 
         lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        lbl_titulo.setText("Menú módulos");
+        lbl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_titulo.setText("Menú de opciones");
 
-        btn_registro.setBackground(new java.awt.Color(26, 84, 147));
-        btn_registro.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_registro.setForeground(new java.awt.Color(255, 255, 255));
-        btn_registro.setText("Registro");
-        btn_registro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_registroActionPerformed(evt);
+        lblRegistro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblRegistro.setPreferredSize(new java.awt.Dimension(80, 80));
+        lblRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRegistroMouseClicked(evt);
             }
         });
 
-        btn_tipo_equipos.setBackground(new java.awt.Color(26, 84, 147));
-        btn_tipo_equipos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_tipo_equipos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_tipo_equipos.setText("Tipo equipos");
-
-        btn_marcas.setBackground(new java.awt.Color(26, 84, 147));
-        btn_marcas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_marcas.setForeground(new java.awt.Color(255, 255, 255));
-        btn_marcas.setText("Marcas");
-        btn_marcas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_marcasActionPerformed(evt);
+        lblPersonas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblPersonas.setPreferredSize(new java.awt.Dimension(80, 80));
+        lblPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPersonasMouseClicked(evt);
             }
         });
 
-        btn_personas.setBackground(new java.awt.Color(26, 84, 147));
-        btn_personas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_personas.setForeground(new java.awt.Color(255, 255, 255));
-        btn_personas.setText("Personas");
-        btn_personas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_personasActionPerformed(evt);
+        lblMarcas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblMarcas.setPreferredSize(new java.awt.Dimension(80, 80));
+        lblMarcas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMarcasMouseClicked(evt);
             }
         });
 
-        btn_parametros.setBackground(new java.awt.Color(26, 84, 147));
-        btn_parametros.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_parametros.setForeground(new java.awt.Color(255, 255, 255));
-        btn_parametros.setText("Parámetros");
-        btn_parametros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_parametrosActionPerformed(evt);
+        lblParametros.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblParametros.setPreferredSize(new java.awt.Dimension(80, 80));
+        lblParametros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblParametrosMouseClicked(evt);
             }
         });
+
+        lblTipoEquipo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblTipoEquipo.setPreferredSize(new java.awt.Dimension(80, 80));
 
         javax.swing.GroupLayout pnl_PpalLayout = new javax.swing.GroupLayout(pnl_Ppal);
         pnl_Ppal.setLayout(pnl_PpalLayout);
@@ -104,38 +135,41 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(pnl_PpalLayout.createSequentialGroup()
                 .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_PpalLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnl_PpalLayout.createSequentialGroup()
-                                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_tipo_equipos))
-                                .addGap(35, 35, 35)
-                                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btn_marcas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_personas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btn_parametros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(45, 45, 45)
+                        .addComponent(lblRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(lblPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(lblMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnl_PpalLayout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(lbl_titulo)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addGap(100, 100, 100)
+                        .addComponent(lblParametros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(lblTipoEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(pnl_PpalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(23, 23, 23))
         );
         pnl_PpalLayout.setVerticalGroup(
             pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_PpalLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(25, 25, 25)
                 .addComponent(lbl_titulo)
-                .addGap(18, 18, 18)
-                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_registro)
-                    .addComponent(btn_marcas))
-                .addGap(15, 15, 15)
-                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_personas)
-                    .addComponent(btn_tipo_equipos))
-                .addGap(18, 18, 18)
-                .addComponent(btn_parametros)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_PpalLayout.createSequentialGroup()
+                        .addComponent(lblParametros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnl_PpalLayout.createSequentialGroup()
+                        .addComponent(lblTipoEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,37 +180,41 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_Ppal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnl_Ppal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registroActionPerformed
-        try{
-        registroPpal = new RegistroPpal();
-        registroPpal.setVisible(true);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error consultando Datos: " + e.getMessage(),
-                    "Error en consulta", JOptionPane.ERROR_MESSAGE);
+    private void lblRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistroMouseClicked
+        try {
+            registroPpal = new RegistroPpal();
+            registroPpal.setVisible(true);
+            this.setVisible(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error accediendo al formulario " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btn_registroActionPerformed
+    }//GEN-LAST:event_lblRegistroMouseClicked
 
-    private void btn_marcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_marcasActionPerformed
+    private void lblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPersonasMouseClicked
+        personaPpal = new PersonaPpal();
+        this.setVisible(false);
+        personaPpal.setVisible(true);
+    }//GEN-LAST:event_lblPersonasMouseClicked
+
+    private void lblMarcasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMarcasMouseClicked
         marcaPpal = new MarcaPpal();
         marcaPpal.setVisible(true);
-    }//GEN-LAST:event_btn_marcasActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_lblMarcasMouseClicked
 
-    private void btn_personasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_personasActionPerformed
-        personaPpal = new PersonaPpal();
-        personaPpal.setVisible(true);
-    }//GEN-LAST:event_btn_personasActionPerformed
-
-    private void btn_parametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_parametrosActionPerformed
+    private void lblParametrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblParametrosMouseClicked
         parametrosPpal = new ParametrosPpal();
         parametrosPpal.setVisible(true);
-    }//GEN-LAST:event_btn_parametrosActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_lblParametrosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -214,11 +252,11 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_marcas;
-    private javax.swing.JButton btn_parametros;
-    private javax.swing.JButton btn_personas;
-    private javax.swing.JButton btn_registro;
-    private javax.swing.JButton btn_tipo_equipos;
+    private javax.swing.JLabel lblMarcas;
+    private javax.swing.JLabel lblParametros;
+    private javax.swing.JLabel lblPersonas;
+    private javax.swing.JLabel lblRegistro;
+    private javax.swing.JLabel lblTipoEquipo;
     private javax.swing.JLabel lbl_titulo;
     private javax.swing.JPanel pnl_Ppal;
     // End of variables declaration//GEN-END:variables

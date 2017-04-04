@@ -14,4 +14,5 @@ public class ConstantesApp {
     public static String PARAM_TIPO_PERSONA = "TIPO_PERSONA";
     public static String TIPO_CONSULTA_HIST = "HISTORICO";
     public static String TIPO_CONSULTA_ING = "INGRESOS";
+    public static String IMG_PATH = "src/imagenes/home.png";
 }

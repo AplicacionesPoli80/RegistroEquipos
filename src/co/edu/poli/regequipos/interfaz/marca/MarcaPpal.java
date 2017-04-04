@@ -4,13 +4,20 @@
  * and open the template in the editor.
  */ 
 package co.edu.poli.regequipos.interfaz.marca;
+import co.edu.poli.regequipos.constantes.ConstantesApp;
 import co.edu.poli.regequipos.entidades.Marca;
 import co.edu.poli.regequipos.entidades.TipoEquipo;
+import co.edu.poli.regequipos.interfaz.menu.Menu;
 import co.edu.poli.regequipos.model.MarcaModel;
 import co.edu.polo.regequipos.dao.MarcaDao;
 import co.edu.polo.regequipos.dao.TipoEquipoDao;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 /**
  *
@@ -33,6 +40,13 @@ public class MarcaPpal extends javax.swing.JFrame {
         }
         initComponents();
         llenarListaTipoEquipos();
+        try {
+            BufferedImage img = ImageIO.read(new File(ConstantesApp.IMG_PATH));
+            ImageIcon icon = new ImageIcon(img);
+            this.lblHome.setIcon(icon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
         
     public void refrescarTabla() {
@@ -82,6 +96,7 @@ public class MarcaPpal extends javax.swing.JFrame {
         txtNomMarca = new javax.swing.JTextField();
         cmb_tipo_equipo = new javax.swing.JComboBox<>();
         btn_N_marca = new javax.swing.JButton();
+        lblHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,12 +168,18 @@ public class MarcaPpal extends javax.swing.JFrame {
             }
         });
 
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHomeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addContainerGap()
@@ -181,7 +202,10 @@ public class MarcaPpal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNomMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTitulo)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblTitulo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(212, 212, 212)
                         .addComponent(btnBuscar)))
@@ -191,7 +215,11 @@ public class MarcaPpal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNomMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,6 +313,12 @@ public class MarcaPpal extends javax.swing.JFrame {
         this.tblMarca.setModel(model);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
+        this.setVisible(false);
+        Menu m = new Menu();
+        m.setVisible(true);
+    }//GEN-LAST:event_lblHomeMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -331,6 +365,7 @@ public class MarcaPpal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_tipo_equipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblIdTipoEquipo;
     private javax.swing.JLabel lblNomMarca;
     private javax.swing.JLabel lblTitulo;

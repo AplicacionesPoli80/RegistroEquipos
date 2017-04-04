@@ -5,10 +5,17 @@
  */
 package co.edu.poli.regequipos.interfaz.persona;
 
+import co.edu.poli.regequipos.constantes.ConstantesApp;
 import co.edu.poli.regequipos.entidades.Persona;
+import co.edu.poli.regequipos.interfaz.menu.Menu;
 import co.edu.poli.regequipos.model.PersonaModel;
 import co.edu.polo.regequipos.dao.PersonaDao;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +29,7 @@ public class PersonaPpal extends javax.swing.JFrame {
      *
      */
     private PersonaDao personaDao;
+    
 
     /**
      * Creates new form PersonaPpal
@@ -33,6 +41,13 @@ public class PersonaPpal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error: " + e, "Error", JOptionPane.ERROR_MESSAGE);
         }
         initComponents();
+        try {
+            BufferedImage img = ImageIO.read(new File(ConstantesApp.IMG_PATH));
+            ImageIcon icon = new ImageIcon(img);
+            this.lblHome.setIcon(icon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void refrescarTabla() {
@@ -69,6 +84,7 @@ public class PersonaPpal extends javax.swing.JFrame {
         btn_nueva_persona = new javax.swing.JButton();
         btn_mod_persona = new javax.swing.JButton();
         btn_eliminar_persona = new javax.swing.JButton();
+        lblHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,14 +159,16 @@ public class PersonaPpal extends javax.swing.JFrame {
             }
         });
 
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHomeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_PersonaLayout = new javax.swing.GroupLayout(pnl_Persona);
         pnl_Persona.setLayout(pnl_PersonaLayout);
         pnl_PersonaLayout.setHorizontalGroup(
             pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_PersonaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(185, 185, 185))
             .addGroup(pnl_PersonaLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -160,29 +178,38 @@ public class PersonaPpal extends javax.swing.JFrame {
                         .addComponent(btn_mod_persona)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_eliminar_persona))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                     .addGroup(pnl_PersonaLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_iden)
-                            .addComponent(lbl_apellidos)
-                            .addComponent(lbl_nombres))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_nombres)
-                            .addComponent(txt_iden)
-                            .addComponent(txt_apellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
-                        .addGap(54, 54, 54)
-                        .addComponent(btn_buscar)
-                        .addGap(33, 33, 33))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnl_PersonaLayout.createSequentialGroup()
+                                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_iden)
+                                    .addComponent(lbl_apellidos)
+                                    .addComponent(lbl_nombres))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_nombres)
+                                    .addComponent(txt_iden)
+                                    .addComponent(txt_apellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                                .addGap(54, 54, 54)
+                                .addComponent(btn_buscar)
+                                .addGap(37, 37, 37))
+                            .addGroup(pnl_PersonaLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(102, 102, 102)
+                                .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         pnl_PersonaLayout.setVerticalGroup(
             pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_PersonaLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHome, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_PersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_iden)
                     .addComponent(txt_iden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -297,6 +324,12 @@ public class PersonaPpal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_nueva_personaActionPerformed
 
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
+        this.setVisible(false);
+        Menu m = new Menu();
+        m.setVisible(true);
+    }//GEN-LAST:event_lblHomeMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -340,6 +373,7 @@ public class PersonaPpal extends javax.swing.JFrame {
     private javax.swing.JButton btn_nueva_persona;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lbl_apellidos;
     private javax.swing.JLabel lbl_iden;
     private javax.swing.JLabel lbl_nombres;

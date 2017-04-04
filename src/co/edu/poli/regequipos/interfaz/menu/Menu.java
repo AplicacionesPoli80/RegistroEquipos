@@ -5,6 +5,7 @@
  */
 package co.edu.poli.regequipos.interfaz.menu;
 
+import co.edu.poli.interfaz.equipos.GestionEquipos;
 import co.edu.poli.regequipos.interfaz.marca.MarcaPpal;
 import co.edu.poli.regequipos.interfaz.parametros.ParametrosPpal;
 import co.edu.poli.regequipos.interfaz.persona.PersonaPpal;
@@ -21,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
     PersonaPpal personaPpal;
     ParametrosPpal parametrosPpal;
     MarcaPpal marcaPpal;
+    GestionEquipos gestionEquipos;
     
     public Menu() {
         initComponents();
@@ -178,7 +180,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_registroActionPerformed
 
     private void btn_equiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_equiposActionPerformed
-        
+        gestionEquipos = new GestionEquipos(null, null,false,null);
+        gestionEquipos.setVisible(true);
     }//GEN-LAST:event_btn_equiposActionPerformed
 
     private void btn_marcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_marcasActionPerformed

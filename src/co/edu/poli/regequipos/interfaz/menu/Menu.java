@@ -40,7 +40,6 @@ public class Menu extends javax.swing.JFrame {
         pnl_Ppal = new javax.swing.JPanel();
         lbl_titulo = new javax.swing.JLabel();
         btn_registro = new javax.swing.JButton();
-        btn_equipos = new javax.swing.JButton();
         btn_tipo_equipos = new javax.swing.JButton();
         btn_marcas = new javax.swing.JButton();
         btn_personas = new javax.swing.JButton();
@@ -60,16 +59,6 @@ public class Menu extends javax.swing.JFrame {
         btn_registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_registroActionPerformed(evt);
-            }
-        });
-
-        btn_equipos.setBackground(new java.awt.Color(26, 84, 147));
-        btn_equipos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btn_equipos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_equipos.setText("Equipos");
-        btn_equipos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_equiposActionPerformed(evt);
             }
         });
 
@@ -116,19 +105,16 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_PpalLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnl_PpalLayout.createSequentialGroup()
-                                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btn_equipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btn_registro, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
-                                .addGap(39, 39, 39)
+                                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_tipo_equipos))
+                                .addGap(35, 35, 35)
                                 .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btn_marcas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btn_personas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnl_PpalLayout.createSequentialGroup()
-                                .addComponent(btn_tipo_equipos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_parametros, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btn_parametros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnl_PpalLayout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(lbl_titulo)))
@@ -145,12 +131,10 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btn_marcas))
                 .addGap(15, 15, 15)
                 .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_equipos)
-                    .addComponent(btn_personas))
-                .addGap(18, 18, 18)
-                .addGroup(pnl_PpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_parametros)
+                    .addComponent(btn_personas)
                     .addComponent(btn_tipo_equipos))
+                .addGap(18, 18, 18)
+                .addComponent(btn_parametros)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -178,11 +162,6 @@ public class Menu extends javax.swing.JFrame {
                     "Error en consulta", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_registroActionPerformed
-
-    private void btn_equiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_equiposActionPerformed
-        gestionEquipos = new GestionEquipos(null, null,false,null);
-        gestionEquipos.setVisible(true);
-    }//GEN-LAST:event_btn_equiposActionPerformed
 
     private void btn_marcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_marcasActionPerformed
         marcaPpal = new MarcaPpal();
@@ -235,7 +214,6 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_equipos;
     private javax.swing.JButton btn_marcas;
     private javax.swing.JButton btn_parametros;
     private javax.swing.JButton btn_personas;

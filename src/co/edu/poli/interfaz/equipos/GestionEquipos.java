@@ -5,21 +5,15 @@
  */
 package co.edu.poli.interfaz.equipos;
 
-import co.edu.poli.regequipos.constantes.ConstantesApp;
 import co.edu.poli.regequipos.entidades.Equipo;
 import co.edu.poli.regequipos.entidades.Marca;
 import co.edu.poli.regequipos.entidades.Persona;
-import co.edu.poli.regequipos.interfaz.menu.Menu;
 import co.edu.poli.regequipos.interfaz.registro.RegistroPpal;
 import co.edu.polo.regequipos.dao.EquipoDao;
 import co.edu.polo.regequipos.dao.MarcaDao;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -27,12 +21,13 @@ import javax.swing.JOptionPane;
  * @author jlrodriguez
  */
 public class GestionEquipos extends javax.swing.JDialog {
-    
+
     EquipoDao equipoDao;
     boolean updateMode;
     Long identificacion;
     RegistroPpal registroPpal;
     MarcaDao marcaDao;
+
     /**
      * Creates new form GestionEquipos
      */
@@ -40,46 +35,35 @@ public class GestionEquipos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         llenarMarcas();
-        try {
-            BufferedImage img = ImageIO.read(new File(ConstantesApp.IMG_PATH));
-            ImageIcon icon = new ImageIcon(img);
-            this.lblHome.setIcon(icon);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
-     public GestionEquipos(EquipoDao ip_equipoDao, RegistroPpal ip_registroPpal, boolean ip_updateMode, Long identificacion) {
+    public GestionEquipos(EquipoDao ip_equipoDao, RegistroPpal ip_registroPpal, boolean ip_updateMode, Long identificacion) {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.equipoDao = ip_equipoDao;       
+        this.equipoDao = ip_equipoDao;
         this.updateMode = ip_updateMode;
         this.identificacion = identificacion;
         this.registroPpal = ip_registroPpal;
         llenarMarcas();
-        try {
-            BufferedImage img = ImageIO.read(new File(ConstantesApp.IMG_PATH));
-            ImageIcon icon = new ImageIcon(img);
-            this.lblHome.setIcon(icon);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
-     
-     public void llenarMarcas() {
+
+    public void llenarMarcas() {
         List<Marca> lstMarcas = new ArrayList();
         marcaDao = new MarcaDao();
         try {
             lstMarcas = marcaDao.consultaMarca(null);
             for (Marca m : lstMarcas) {
-                this.cmb_marcas.addItem(m.getIdMarca()+ "-" + m.getNomMarca());
+                this.cmb_marcas.addItem(m.getIdMarca() + "-" + m.getNomMarca());
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,7 +84,6 @@ public class GestionEquipos extends javax.swing.JDialog {
         txtObservaciones = new javax.swing.JTextArea();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        lblHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -147,12 +130,6 @@ public class GestionEquipos extends javax.swing.JDialog {
             }
         });
 
-        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblHomeMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,21 +163,14 @@ public class GestionEquipos extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(165, 165, 165)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(34, 186, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(txtSerial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -246,31 +216,25 @@ public class GestionEquipos extends javax.swing.JDialog {
         String observaciones = this.txtObservaciones.getText();
         String idMarca = this.cmb_marcas.getSelectedItem().toString().split("-")[0];
         Equipo e = null;
-                  e = new Equipo();
-           e.setSerial(serial);
-           Persona p = new Persona();
-           p.setIdentificacion(identificacion);
-           e.setIdentificacion(p);
-           Marca m = new Marca();
-           m.setIdMarca(Integer.parseInt(idMarca));
-           e.setIdMarca(m);
-           e.setObservaciones(observaciones);
+        e = new Equipo();
+        e.setSerial(serial);
+        Persona p = new Persona();
+        p.setIdentificacion(identificacion);
+        e.setIdentificacion(p);
+        Marca m = new Marca();
+        m.setIdMarca(Integer.parseInt(idMarca));
+        e.setIdMarca(m);
+        e.setObservaciones(observaciones);
 
         try {
-            equipoDao.insertarEquipo(e);           
+            equipoDao.insertarEquipo(e);
             this.setVisible(false);
             registroPpal.consultarEquipos();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error" + ex.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
-        this.setVisible(false);
-        Menu m = new Menu();
-        m.setVisible(true);
-    }//GEN-LAST:event_lblHomeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -324,7 +288,6 @@ public class GestionEquipos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblHome;
     private javax.swing.JTextArea txtObservaciones;
     private javax.swing.JTextField txtSerial;
     // End of variables declaration//GEN-END:variables

@@ -36,7 +36,7 @@ public class GestionMarca extends javax.swing.JDialog {
         if (updateMode) {
             this.setTitle("Actualizar Marcas");
             this.lblTitulo.setText("Actualizar Marca");
-            llenarFormulario(this.marcaAnt);
+            llenarFormulario(this.marcaAnt);            
         } else {
             this.cmbIdTipoEquipo.setEditable(true);
             this.txtNomMarca.setEditable(true);
@@ -199,17 +199,20 @@ public class GestionMarca extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-/*
+        
         String nomMarca = this.txtNomMarca.getText();
-        int idTipoEquipo = this.cmbIdTipoEquipo.getSelectedItem();
+        int idTipoEquipo = Integer.parseInt(this.cmbIdTipoEquipo.getSelectedItem().toString().split(" - ")[0]);
          Marca marca = null;
+         TipoEquipo te = new TipoEquipo();
         if (updateMode) {
             marca = marcaAnt;
-            marca.setIdTipoEquipo(idTipoEquipo);
+            te.setIdTipoEquipo(idTipoEquipo);            
+            marca.setIdTipoEquipo(te);
             marca.setNomMarca(nomMarca);
         } else {
             marca = new Marca();
-            marca.setIdTipoEquipo(idTipoEquipo);
+            te.setIdTipoEquipo(idTipoEquipo);
+            marca.setIdTipoEquipo(te);
             marca.setNomMarca(nomMarca);
             
         }
@@ -227,7 +230,7 @@ public class GestionMarca extends javax.swing.JDialog {
         }
 
 
-*/
+
 
         
     }//GEN-LAST:event_btnGuardarActionPerformed

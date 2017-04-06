@@ -268,11 +268,11 @@ public class MarcaPpal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una marca", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    /**    Marca tmpMarca = (Marca) this.tblMarca.getValueAt(row, MarcaModel.OBJECT_COL);
+        Marca tmpMarca = (Marca) this.tblMarca.getValueAt(row, MarcaModel.OBJECT_COL);
         GestionMarca gp = new GestionMarca(marcaDao, this, tmpMarca, true);
         gp.setVisible(true);
         
-       **/ 
+       
     }//GEN-LAST:event_btn_M_marcaActionPerformed
 
     private void btn_E_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_E_marcaActionPerformed
@@ -300,8 +300,8 @@ public class MarcaPpal extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String nomMarca = this.txtNomMarca.getText();
-        String valorParam = this.cmb_tipo_equipo.getSelectedItem().toString();
-        
+        /*int  = this.cmb_tipo_equipo.getSelectedItem().toString();
+        */
         List<Marca> lstMarcas = null;
         try {
             lstMarcas = marcaDao.consultaMarca(nomMarca != null ? nomMarca.toUpperCase() : nomMarca);

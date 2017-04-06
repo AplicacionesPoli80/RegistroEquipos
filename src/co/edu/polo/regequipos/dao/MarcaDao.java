@@ -78,10 +78,11 @@ public class MarcaDao {
         con = conexion.conectarBD();
         PreparedStatement pstm = null;
         try {
-            pstm = con.prepareStatement("update Marca set nom_marca = ? "
+            pstm = con.prepareStatement("update Marca set nom_marca = ?, id_tipo_equipo = ? "
                     + "where id_marca = ? ");
             pstm.setString(1, marca.getNomMarca());
-            pstm.setInt(2, marca.getIdMarca());
+            pstm.setInt(2, Integer.parseInt(marca.getIdTipoEquipo().getIdTipoEquipo().toString()));
+            pstm.setInt(3, marca.getIdMarca());
             pstm.executeUpdate();/*Ejecutar el cambio en la base de datos*/
 
         } catch (Exception e) {

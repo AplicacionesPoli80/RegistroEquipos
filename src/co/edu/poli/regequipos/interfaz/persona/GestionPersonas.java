@@ -9,6 +9,7 @@ import co.edu.poli.regequipos.conexion.Conexion;
 import co.edu.poli.regequipos.constantes.ConstantesApp;
 import co.edu.poli.regequipos.entidades.Parametros;
 import co.edu.poli.regequipos.entidades.Persona;
+import co.edu.poli.regequipos.interfaz.registro.RegistroPpal;
 import co.edu.polo.regequipos.dao.ParametrosDao;
 import co.edu.polo.regequipos.dao.PersonaDao;
 import java.sql.Connection;
@@ -30,11 +31,12 @@ public class GestionPersonas extends javax.swing.JDialog {
     private PersonaPpal personaPpal;
     private Persona personaAnt = null;
     private boolean updateMode = false;
+    private RegistroPpal registroPpal;
     //Otros objetos
     private ParametrosDao paramDao;
 
     public GestionPersonas(PersonaDao ip_personaDao, PersonaPpal ip_personaPpal,
-            Persona ip_personaAnt, boolean ip_updateMode)throws Exception{
+            Persona ip_personaAnt, boolean ip_updateMode) throws Exception {
 
         initComponents();
         this.setResizable(false);
@@ -54,7 +56,30 @@ public class GestionPersonas extends javax.swing.JDialog {
             llenarFormulario(this.personaAnt);
         } else {
             this.txt_iden.setEditable(true);
-            
+
+        }
+        //Cargar combo de tipos de identificación
+        llenarTipoIdentificacion(null);
+        llenarTipoPersona(null);
+    }
+
+    public GestionPersonas(PersonaDao ip_personaDao, RegistroPpal ip_registroPpal,
+            Long identificacion, boolean ip_updateMode) throws Exception {
+
+        initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.personaDao = ip_personaDao;
+        this.registroPpal = ip_registroPpal;
+        this.updateMode = ip_updateMode;
+
+        if (updateMode) {
+            this.setTitle("Actualizar Persona");
+            this.lbl_titulo.setText("Actualizar Persona");
+            llenarFormulario(this.personaAnt);
+        } else {
+            this.txt_iden.setText(identificacion.toString());
+            this.txt_iden.setEditable(false);
         }
 
     }
@@ -66,7 +91,7 @@ public class GestionPersonas extends javax.swing.JDialog {
         this.txt_nombres.setText(persona.getNombres());
         llenarTipoPersona(persona.getTipoPersona().toString());
         this.txt_iden.setEditable(false);
-        
+
     }
     public void llenarTipoIdentificacion(String iden){
         List<Parametros> lstParam = new ArrayList();
@@ -112,7 +137,6 @@ public class GestionPersonas extends javax.swing.JDialog {
         }
 
     }
-    
 
     public GestionPersonas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -144,33 +168,51 @@ public class GestionPersonas extends javax.swing.JDialog {
         btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lbl_titulo.setText("Gestion   Personas");
+        pnl_frm_persona.setBackground(new java.awt.Color(255, 255, 255));
 
+        lbl_titulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_titulo.setText("Gestión   personas");
+
+        lbl_tipo_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_tipo_iden.setText("Tipo de Identificacion:");
 
+        lbl_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_iden.setText("Identificacion:");
 
+        lbl_apellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_apellidos.setText("Apellidos:");
 
+        lbl_nombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_nombres.setText("Nombres:");
 
+        lbl_tipo_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbl_tipo_persona.setText("Tipo de Persona:");
 
+        cmb_tipo_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmb_tipo_iden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_tipo_idenActionPerformed(evt);
             }
         });
 
+        txt_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txt_apellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txt_nombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        cmb_tipo_persona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmb_tipo_persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_tipo_personaActionPerformed(evt);
             }
         });
 
-        btn_guardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_guardar.setBackground(new java.awt.Color(26, 84, 147));
+        btn_guardar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_guardar.setForeground(new java.awt.Color(255, 255, 255));
         btn_guardar.setText("GUARDAR");
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,7 +220,9 @@ public class GestionPersonas extends javax.swing.JDialog {
             }
         });
 
-        btn_cancelar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_cancelar.setBackground(new java.awt.Color(26, 84, 147));
+        btn_cancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
         btn_cancelar.setText("CANCELAR");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,9 +237,6 @@ public class GestionPersonas extends javax.swing.JDialog {
             .addGroup(pnl_frm_personaLayout.createSequentialGroup()
                 .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_frm_personaLayout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(lbl_titulo))
-                    .addGroup(pnl_frm_personaLayout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_tipo_iden)
@@ -203,19 +244,24 @@ public class GestionPersonas extends javax.swing.JDialog {
                             .addComponent(lbl_apellidos)
                             .addComponent(lbl_nombres)
                             .addComponent(lbl_tipo_persona))
-                        .addGap(28, 28, 28)
-                        .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_iden)
+                        .addGap(8, 8, 8)
+                        .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_nombres, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_iden, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_apellidos)
-                            .addComponent(txt_nombres)
-                            .addComponent(cmb_tipo_persona, 0, 110, Short.MAX_VALUE)
+                            .addComponent(cmb_tipo_persona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmb_tipo_iden, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(pnl_frm_personaLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(btn_guardar)
-                        .addGap(33, 33, 33)
-                        .addComponent(btn_cancelar)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addGap(46, 46, 46)
+                        .addComponent(btn_cancelar)
+                        .addGap(0, 64, Short.MAX_VALUE)))
+                .addGap(22, 22, 22))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_frm_personaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lbl_titulo)
+                .addGap(131, 131, 131))
         );
         pnl_frm_personaLayout.setVerticalGroup(
             pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +292,7 @@ public class GestionPersonas extends javax.swing.JDialog {
                 .addGroup(pnl_frm_personaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_guardar)
                     .addComponent(btn_cancelar))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,8 +300,8 @@ public class GestionPersonas extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnl_frm_persona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnl_frm_persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,46 +311,52 @@ public class GestionPersonas extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmb_tipo_idenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipo_idenActionPerformed
-        
+
     }//GEN-LAST:event_cmb_tipo_idenActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-        if(txt_iden!=null){
-        String tipoIden = this.cmb_tipo_iden.getSelectedItem().toString().split(" - ")[0];
-        Long identificacion=Long.parseLong(this.txt_iden.getText());
-        String apellidos = this.txt_apellidos.getText();
-        String nombres = this.txt_nombres.getText();
-        String tipoPersona = this.cmb_tipo_persona.getSelectedItem().toString().split(" - ")[0];
-        Persona persona = null;        
-        if (updateMode) {
-            persona = personaAnt;
-            persona.setTipoIdentificacion(tipoIden);
-            persona.setApellidos(apellidos);
-            persona.setNombres(nombres);
-            persona.setTipoPersona(tipoPersona);
-        } else {
-            persona = new Persona();            
-            persona.setTipoIdentificacion(tipoIden);
-            persona.setIdentificacion(identificacion);
-            persona.setApellidos(apellidos);
-            persona.setNombres(nombres);
-            persona.setTipoPersona(tipoPersona);
-        }
-
-        try {
+        if (txt_iden != null) {
+            String tipoIden = this.cmb_tipo_iden.getSelectedItem().toString().split(" - ")[0];
+            Long identificacion = Long.parseLong(this.txt_iden.getText());
+            String apellidos = this.txt_apellidos.getText();
+            String nombres = this.txt_nombres.getText();
+            String tipoPersona = this.cmb_tipo_persona.getSelectedItem().toString().split(" - ")[0];
+            Persona persona = null;
             if (updateMode) {
-                personaDao.actualizarPersona(persona);
+                persona = personaAnt;
+                persona.setTipoIdentificacion(tipoIden);
+                persona.setApellidos(apellidos);
+                persona.setNombres(nombres);
+                persona.setTipoPersona(tipoPersona);
             } else {
-                personaDao.insertarPersona(persona);
+                persona = new Persona();
+                persona.setTipoIdentificacion(tipoIden);
+                persona.setIdentificacion(identificacion);
+                persona.setApellidos(apellidos);
+                persona.setNombres(nombres);
+                persona.setTipoPersona(tipoPersona);
             }
-            this.setVisible(false);
-            personaPpal.refrescarTabla();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+
+            try {
+                if (updateMode) {
+                    personaDao.actualizarPersona(persona);
+                } else {
+                    personaDao.insertarPersona(persona);
+                }
+                this.setVisible(false);
+                if(personaPpal != null){
+                    personaPpal.refrescarTabla();
+                }
+                if(registroPpal != null){
+                    registroPpal.consultarPersona();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         else{
         JOptionPane.showMessageDialog(this, "Debe digitar un numero de Identificacion",
@@ -313,7 +365,7 @@ public class GestionPersonas extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void cmb_tipo_personaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipo_personaActionPerformed

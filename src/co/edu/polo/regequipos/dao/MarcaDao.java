@@ -52,6 +52,43 @@ public class MarcaDao {
         }
 
     }
+    
+    public List<Marca> consultaMarcaPorTipo(int tipo) throws Exception {
+        List<Marca> lstMarca = new ArrayList<>();
+        Marca m;
+        TipoEquipo t;
+        String sql;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        conexion = new Conexion();
+        con = conexion.conectarBD();
+        try {
+            sql = "select m.id_marca, m.nom_marca, m.id_tipo_equipo, t.nom_tipo_equipo from marca m inner join tipo_equipo t on "
+                    + "(m.id_tipo_equipo=t.id_tipo_equipo) where m.id_tipo_equipo = "+tipo;
+           
+            pstm = con.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                m = new Marca();
+                m.setIdMarca(rs.getInt("id_marca"));
+                m.setNomMarca(rs.getString("nom_marca"));
+                t = new TipoEquipo();
+                t.setIdTipoEquipo(rs.getInt("id_tipo_equipo"));
+                t.setNomTipoEquipo(rs.getString("nom_tipo_equipo"));
+                m.setIdTipoEquipo(t);                
+                lstMarca.add(m);
+            }
+            return lstMarca;
+
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            pstm.close();
+            rs.close();
+            con.close();
+        }
+
+    }
 
     public void insertarMarca(Marca marca) throws Exception {
         conexion = new Conexion();
@@ -78,10 +115,11 @@ public class MarcaDao {
         con = conexion.conectarBD();
         PreparedStatement pstm = null;
         try {
-            pstm = con.prepareStatement("update Marca set nom_marca = ? "
+            pstm = con.prepareStatement("update Marca set nom_marca = ?, id_tipo_equipo = ? "
                     + "where id_marca = ? ");
             pstm.setString(1, marca.getNomMarca());
-            pstm.setInt(2, marca.getIdMarca());
+            pstm.setInt(2, Integer.parseInt(marca.getIdTipoEquipo().getIdTipoEquipo().toString()));
+            pstm.setInt(3, marca.getIdMarca());
             pstm.executeUpdate();/*Ejecutar el cambio en la base de datos*/
 
         } catch (Exception e) {

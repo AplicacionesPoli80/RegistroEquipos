@@ -4,13 +4,20 @@
  * and open the template in the editor.
  */ 
 package co.edu.poli.regequipos.interfaz.marca;
+import co.edu.poli.regequipos.constantes.ConstantesApp;
 import co.edu.poli.regequipos.entidades.Marca;
 import co.edu.poli.regequipos.entidades.TipoEquipo;
+import co.edu.poli.regequipos.interfaz.menu.Menu;
 import co.edu.poli.regequipos.model.MarcaModel;
 import co.edu.polo.regequipos.dao.MarcaDao;
 import co.edu.polo.regequipos.dao.TipoEquipoDao;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 /**
  *
@@ -33,6 +40,13 @@ public class MarcaPpal extends javax.swing.JFrame {
         }
         initComponents();
         llenarListaTipoEquipos();
+        try {
+            BufferedImage img = ImageIO.read(new File(ConstantesApp.IMG_PATH));
+            ImageIcon icon = new ImageIcon(img);
+            this.lblHome.setIcon(icon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
         
     public void refrescarTabla() {
@@ -77,20 +91,29 @@ public class MarcaPpal extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMarca = new javax.swing.JTable();
-        btn_N_marca = new javax.swing.JButton();
         btn_M_marca = new javax.swing.JButton();
         btn_E_marca = new javax.swing.JButton();
         txtNomMarca = new javax.swing.JTextField();
         cmb_tipo_equipo = new javax.swing.JComboBox<>();
+        btn_N_marca = new javax.swing.JButton();
+        lblHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblTitulo.setText("GESTIONAR MARCAS");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblNomMarca.setText("NOMBRE MARCA: ");
+        lblTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblTitulo.setText("Gestión marcas");
 
-        lblIdTipoEquipo.setText("TIPO EQUIPO: ");
+        lblNomMarca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblNomMarca.setText("Nombre marca:");
 
+        lblIdTipoEquipo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblIdTipoEquipo.setText("Tipo de equipo:");
+
+        btnBuscar.setBackground(new java.awt.Color(26, 84, 147));
+        btnBuscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,24 +134,43 @@ public class MarcaPpal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblMarca);
 
-        btn_N_marca.setText("NUEVA MARCA");
-        btn_N_marca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_N_marcaActionPerformed(evt);
-            }
-        });
-
-        btn_M_marca.setText("MODIFICAR MARCA");
+        btn_M_marca.setBackground(new java.awt.Color(26, 84, 147));
+        btn_M_marca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_M_marca.setForeground(new java.awt.Color(255, 255, 255));
+        btn_M_marca.setText("Modificar marca");
         btn_M_marca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_M_marcaActionPerformed(evt);
             }
         });
 
-        btn_E_marca.setText("ELIMINAR MARCA");
+        btn_E_marca.setBackground(new java.awt.Color(26, 84, 147));
+        btn_E_marca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_E_marca.setForeground(new java.awt.Color(255, 255, 255));
+        btn_E_marca.setText("Eliminar marca");
         btn_E_marca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_E_marcaActionPerformed(evt);
+            }
+        });
+
+        txtNomMarca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        cmb_tipo_equipo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        btn_N_marca.setBackground(new java.awt.Color(26, 84, 147));
+        btn_N_marca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btn_N_marca.setForeground(new java.awt.Color(255, 255, 255));
+        btn_N_marca.setText("Nueva marca");
+        btn_N_marca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_N_marcaActionPerformed(evt);
+            }
+        });
+
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHomeMouseClicked(evt);
             }
         });
 
@@ -137,74 +179,80 @@ public class MarcaPpal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(btn_N_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btn_M_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btn_E_marca))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblIdTipoEquipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblNomMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmb_tipo_equipo, 0, 250, Short.MAX_VALUE)
-                            .addComponent(txtNomMarca)))
+                        .addGap(81, 81, 81)
+                        .addComponent(lblIdTipoEquipo)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmb_tipo_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(lblTitulo))
+                        .addGap(82, 82, 82)
+                        .addComponent(lblNomMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNomMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblTitulo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(btnBuscar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btn_N_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(btn_M_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(btn_E_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addGap(212, 212, 212)
+                        .addComponent(btnBuscar)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNomMarca)
-                    .addComponent(txtNomMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtNomMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNomMarca))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIdTipoEquipo)
-                    .addComponent(cmb_tipo_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmb_tipo_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIdTipoEquipo))
                 .addGap(18, 18, 18)
                 .addComponent(btnBuscar)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_N_marca)
                     .addComponent(btn_M_marca)
-                    .addComponent(btn_E_marca))
-                .addContainerGap(177, Short.MAX_VALUE))
+                    .addComponent(btn_E_marca)
+                    .addComponent(btn_N_marca))
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_N_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_N_marcaActionPerformed
@@ -217,14 +265,14 @@ public class MarcaPpal extends javax.swing.JFrame {
        
         int row = this.tblMarca.getSelectedRow();
         if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Debe Seleccionar un parametro", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una marca", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    /**    Marca tmpMarca = (Marca) this.tblMarca.getValueAt(row, MarcaModel.OBJECT_COL);
+        Marca tmpMarca = (Marca) this.tblMarca.getValueAt(row, MarcaModel.OBJECT_COL);
         GestionMarca gp = new GestionMarca(marcaDao, this, tmpMarca, true);
         gp.setVisible(true);
         
-       **/ 
+       
     }//GEN-LAST:event_btn_M_marcaActionPerformed
 
     private void btn_E_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_E_marcaActionPerformed
@@ -232,7 +280,7 @@ public class MarcaPpal extends javax.swing.JFrame {
         try {
             int row = this.tblMarca.getSelectedRow();
             if (row < 0) {
-                JOptionPane.showMessageDialog(this, "Debe Seleccionar un parametro", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Debe seleccionar una marca", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }int rta = JOptionPane.showConfirmDialog(this, "¿Está seguro de ELIMINAR este parametro?",
                     "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -252,8 +300,8 @@ public class MarcaPpal extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String nomMarca = this.txtNomMarca.getText();
-        String valorParam = this.cmb_tipo_equipo.getSelectedItem().toString();
-        
+        /*int  = this.cmb_tipo_equipo.getSelectedItem().toString();
+        */
         List<Marca> lstMarcas = null;
         try {
             lstMarcas = marcaDao.consultaMarca(nomMarca != null ? nomMarca.toUpperCase() : nomMarca);
@@ -264,6 +312,12 @@ public class MarcaPpal extends javax.swing.JFrame {
         MarcaModel model = new MarcaModel(lstMarcas);
         this.tblMarca.setModel(model);
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
+        this.setVisible(false);
+        Menu m = new Menu();
+        m.setVisible(true);
+    }//GEN-LAST:event_lblHomeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -311,6 +365,7 @@ public class MarcaPpal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_tipo_equipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblIdTipoEquipo;
     private javax.swing.JLabel lblNomMarca;
     private javax.swing.JLabel lblTitulo;

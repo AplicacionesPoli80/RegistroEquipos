@@ -5,19 +5,62 @@
  */
 package co.edu.poli.regequipos.interfaz.registro;
 
+import co.edu.poli.interfaz.equipos.GestionEquipos;
+import co.edu.poli.regequipos.constantes.ConstantesApp;
+import co.edu.poli.regequipos.entidades.Equipo;
+import co.edu.poli.regequipos.entidades.Persona;
+import co.edu.poli.regequipos.entidades.Registro;
+import co.edu.poli.regequipos.interfaz.menu.Menu;
+import co.edu.poli.regequipos.interfaz.persona.GestionPersonas;
+import co.edu.poli.regequipos.iterfaz.login.Login;
+import co.edu.poli.regequipos.model.EquipoModel;
+import co.edu.poli.regequipos.model.RegistroModel;
+import co.edu.polo.regequipos.dao.EquipoDao;
+import co.edu.polo.regequipos.dao.PersonaDao;
+import co.edu.polo.regequipos.dao.RegistroDao;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author jlrodriguez
  */
 public class RegistroPpal extends javax.swing.JFrame {
 
+    PersonaDao personaDao;
+    GestionPersonas gestionPer;
+    EquipoDao equipoDao;
+    RegistroDao registroDao;
+    List<Registro> lstRegistro;    
+    List<Registro> lstHistorico;   
+    List<Equipo> lstEquipo = new ArrayList<>();
+    private static final String IMG_PATH = "src/imagenes/home.png";
     /**
      * Creates new form RegistroPpal
      */
     public RegistroPpal() {
         initComponents();
         this.txt_iden.setFocusable(true);
+        
+         try {
+            BufferedImage img = ImageIO.read(new File(IMG_PATH));
+            ImageIcon icon = new ImageIcon(img);
+            this.lblHome.setIcon(icon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,119 +73,295 @@ public class RegistroPpal extends javax.swing.JFrame {
 
         pnl_registro = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txt_iden = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        pnlDatosPersona = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblApellidos = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         lblTipoPersona = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblTipoIden = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txt_iden = new javax.swing.JTextField();
+        pnlEquipos = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEquipos = new javax.swing.JTable();
+        btnAdicionarEquipo = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        pnl_tab_registro = new javax.swing.JTabbedPane();
+        pnl_ingresos = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblIngresos = new javax.swing.JTable();
+        pnl_historico = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblHistorico = new javax.swing.JTable();
+        lblHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Registro de Equipos");
+        pnl_registro.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Identificación: ");
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setText("Administración de ingreso y salida de equipos");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Buscar");
+        pnlDatosPersona.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDatosPersona.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos persona", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Nombres:");
 
-        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblNombre.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Apellidos: ");
 
-        lblApellidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblApellidos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblApellidos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Tipo Persona: ");
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setText("Tipo persona: ");
 
-        lblTipoPersona.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTipoPersona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblTipoPersona.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setText("Tipo ID: ");
+
+        lblTipoIden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblTipoIden.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setText("Identificación: ");
+
+        txt_iden.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txt_iden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idenActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlDatosPersonaLayout = new javax.swing.GroupLayout(pnlDatosPersona);
+        pnlDatosPersona.setLayout(pnlDatosPersonaLayout);
+        pnlDatosPersonaLayout.setHorizontalGroup(
+            pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatosPersonaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosPersonaLayout.createSequentialGroup()
+                        .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTipoIden, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_iden, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlDatosPersonaLayout.createSequentialGroup()
+                        .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 29, Short.MAX_VALUE))
+        );
+        pnlDatosPersonaLayout.setVerticalGroup(
+            pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatosPersonaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlDatosPersonaLayout.createSequentialGroup()
+                        .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlDatosPersonaLayout.createSequentialGroup()
+                                .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txt_iden, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel5))
+                            .addComponent(lblTipoIden, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(lblTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel3))
+                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(pnlDatosPersonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        pnlEquipos.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEquipos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mis equipos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+
+        tblEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEquiposMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblEquipos);
+
+        btnAdicionarEquipo.setBackground(new java.awt.Color(26, 84, 147));
+        btnAdicionarEquipo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnAdicionarEquipo.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdicionarEquipo.setText("Adicionar equipo");
+        btnAdicionarEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarEquipoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlEquiposLayout = new javax.swing.GroupLayout(pnlEquipos);
+        pnlEquipos.setLayout(pnlEquiposLayout);
+        pnlEquiposLayout.setHorizontalGroup(
+            pnlEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEquiposLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEquiposLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAdicionarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(252, 252, 252))
+        );
+        pnlEquiposLayout.setVerticalGroup(
+            pnlEquiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEquiposLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAdicionarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(233, 233, 233))
+        );
+
+        jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
+
+        pnl_tab_registro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        pnl_ingresos.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_ingresos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        tblIngresos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblIngresos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        tblIngresos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblIngresosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblIngresos);
+
+        javax.swing.GroupLayout pnl_ingresosLayout = new javax.swing.GroupLayout(pnl_ingresos);
+        pnl_ingresos.setLayout(pnl_ingresosLayout);
+        pnl_ingresosLayout.setHorizontalGroup(
+            pnl_ingresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_ingresosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1111, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnl_ingresosLayout.setVerticalGroup(
+            pnl_ingresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_ingresosLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnl_tab_registro.addTab("Equipos ingresados", pnl_ingresos);
+
+        pnl_historico.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_historico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnl_historico.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jScrollPane3.setViewportView(tblHistorico);
+
+        javax.swing.GroupLayout pnl_historicoLayout = new javax.swing.GroupLayout(pnl_historico);
+        pnl_historico.setLayout(pnl_historicoLayout);
+        pnl_historicoLayout.setHorizontalGroup(
+            pnl_historicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_historicoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnl_historicoLayout.setVerticalGroup(
+            pnl_historicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_historicoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(lblTipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+
+        pnl_tab_registro.addTab("Histórico de ingresos", pnl_historico);
+
+        lblHome.setPreferredSize(new java.awt.Dimension(32, 32));
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHomeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_registroLayout = new javax.swing.GroupLayout(pnl_registro);
         pnl_registro.setLayout(pnl_registroLayout);
         pnl_registroLayout.setHorizontalGroup(
             pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_registroLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnl_tab_registro)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl_registroLayout.createSequentialGroup()
+                        .addComponent(pnlDatosPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(pnlEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(pnl_registroLayout.createSequentialGroup()
                 .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_registroLayout.createSequentialGroup()
-                        .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnl_registroLayout.createSequentialGroup()
-                                .addGap(374, 374, 374)
-                                .addComponent(jLabel1))
-                            .addGroup(pnl_registroLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_iden, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 418, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(402, 402, 402)
+                        .addComponent(jLabel1))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1081, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnl_registroLayout.setVerticalGroup(
             pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_registroLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addGap(5, 5, 5)
+                .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnl_registroLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_iden, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnl_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlDatosPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 259, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(692, Short.MAX_VALUE))
+                .addComponent(pnl_tab_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,14 +375,162 @@ public class RegistroPpal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnl_registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pnl_registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    public void consultarPersona() {
+        Persona per = new Persona();
+        List<Persona> lstPer = new ArrayList<>();
+        personaDao = new PersonaDao();
+        Long ident = null;
+        try {
+            if (this.txt_iden.getText() != null && this.txt_iden.getText().length() > 0) {
+                ident = Long.parseLong(this.txt_iden.getText());
+                lstPer = personaDao.consultaPersona(ident, null, null);
+                if (lstPer != null && lstPer.size() > 0) {
+                    this.lblNombre.setText(lstPer.get(0).getNombres());
+                    this.lblApellidos.setText(lstPer.get(0).getApellidos());
+                    this.lblTipoPersona.setText(lstPer.get(0).getTipoPersona());
+                    this.lblTipoIden.setText(lstPer.get(0).getTipoIdentificacion());
+                } else {
+                    gestionPer = new GestionPersonas(personaDao, this, ident, false);
+                    gestionPer.setVisible(true);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void txt_idenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idenActionPerformed
+        limpiarDatos();
+        consultarPersona();
+        consultarEquipos();
+        consultarRegistro(ConstantesApp.TIPO_CONSULTA_ING);
+        consultarRegistro(ConstantesApp.TIPO_CONSULTA_HIST);
+    }//GEN-LAST:event_txt_idenActionPerformed
+
+    private void tblIngresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblIngresosMouseClicked
+       int row = this.tblIngresos.getSelectedRow();
+       Registro r = this.lstRegistro.get(row);
+       String mensaje = "Dar salida a "+r.getSerial().getIdMarca().getIdTipoEquipo().getNomTipoEquipo()+" "+
+               r.getSerial().getIdMarca().getNomMarca()+" con Serial "+r.getSerial().getSerial();
+       int rta = JOptionPane.showConfirmDialog(this, mensaje, "Confirmación",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+       if(rta != JOptionPane.NO_OPTION){
+           try {
+               //Dar Salida al Equipo
+               registroDao.actualizarRegistro(r);
+               
+               consultarRegistro(ConstantesApp.TIPO_CONSULTA_ING);
+               consultarRegistro(ConstantesApp.TIPO_CONSULTA_HIST);
+           } catch (Exception ex) {
+               JOptionPane.showMessageDialog(this, "Error: "+ex.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+           }
+       }
+    }//GEN-LAST:event_tblIngresosMouseClicked
+
+    private void tblEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEquiposMouseClicked
+       int row = this.tblEquipos.getSelectedRow();
+       Equipo e = this.lstEquipo.get(row);
+       String mensaje = "Dar ingreso a "+e.getIdMarca().getIdTipoEquipo().getNomTipoEquipo()+" "+
+               e.getIdMarca().getNomMarca()+" con Serial "+e.getSerial();
+       int rta = JOptionPane.showConfirmDialog(this, mensaje, "Confirmación",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+       if(rta != JOptionPane.NO_OPTION){
+           try {
+               //Dar Ingreso al Equipo
+               Registro r = new Registro();
+               r.setSerial(e);
+               registroDao.insertarRegistro(r);
+               
+               consultarRegistro(ConstantesApp.TIPO_CONSULTA_ING);
+               consultarRegistro(ConstantesApp.TIPO_CONSULTA_HIST);
+           } catch (Exception ex) {
+               JOptionPane.showMessageDialog(this, "Error: "+ex.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+           }
+       }
+    }//GEN-LAST:event_tblEquiposMouseClicked
+
+    private void btnAdicionarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarEquipoActionPerformed
+        GestionEquipos ge = new GestionEquipos(equipoDao, this, false, Long.parseLong(this.txt_iden.getText()));
+        ge.setVisible(true);
+    }//GEN-LAST:event_btnAdicionarEquipoActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+      
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Menu m = new Menu();
+        m.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
+        this.setVisible(false);
+        Menu m = new Menu();
+        m.setVisible(true);
+    }//GEN-LAST:event_lblHomeMouseClicked
+
+    public void consultarRegistro(String tipoConsulta){
+        
+        registroDao = new RegistroDao();
+        try{
+            if(ConstantesApp.TIPO_CONSULTA_ING.equals(tipoConsulta)){
+                lstRegistro = new ArrayList<>();
+                lstRegistro = registroDao.consultarRegistro(tipoConsulta, Long.parseLong(this.txt_iden.getText()));
+                if(lstRegistro != null && lstRegistro.size() > 0){
+                    RegistroModel model = new RegistroModel(lstRegistro);
+                    this.tblIngresos.setModel(model);
+                    this.tblIngresos.getColumnModel().getColumn(1).setWidth(100);
+                }else{
+                   this.tblIngresos.setModel(new RegistroModel(new ArrayList<>())); 
+                }
+            }
+            if(ConstantesApp.TIPO_CONSULTA_HIST.equals(tipoConsulta)){
+                lstHistorico = new ArrayList<>();
+                lstHistorico = registroDao.consultarRegistro(tipoConsulta, Long.parseLong(this.txt_iden.getText()));
+                if(lstHistorico != null && lstHistorico.size() > 0){
+                    RegistroModel model = new RegistroModel(lstHistorico);
+                     this.tblHistorico.setModel(model);
+                }
+                
+            }
+            
+           
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error: "+e.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    public void consultarEquipos() {        
+        Long ident = null;
+        EquipoModel model;
+        equipoDao = new EquipoDao();
+        try {
+            if (this.txt_iden.getText() != null && this.txt_iden.getText().length() > 0) {
+                ident = Long.parseLong(this.txt_iden.getText());
+                lstEquipo = equipoDao.consultaEquipos(ident);
+                model = new EquipoModel(lstEquipo);
+                this.tblEquipos.setModel(model);
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void limpiarDatos() {
+        this.lblApellidos.setText("");
+        this.lblNombre.setText("");
+        this.lblTipoPersona.setText("");
+        this.lblTipoIden.setText("");
+        this.tblEquipos.setModel(new EquipoModel(new ArrayList<Equipo>()));
+        this.tblHistorico.setModel(new RegistroModel(new ArrayList<Registro>()));
+        this.tblIngresos.setModel(new RegistroModel(new ArrayList<>()));
+    }
 
     /**
      * @param args the command line arguments
@@ -201,17 +568,31 @@ public class RegistroPpal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAdicionarEquipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblApellidos;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTipoIden;
     private javax.swing.JLabel lblTipoPersona;
+    private javax.swing.JPanel pnlDatosPersona;
+    private javax.swing.JPanel pnlEquipos;
+    private javax.swing.JPanel pnl_historico;
+    private javax.swing.JPanel pnl_ingresos;
     private javax.swing.JPanel pnl_registro;
+    private javax.swing.JTabbedPane pnl_tab_registro;
+    private javax.swing.JTable tblEquipos;
+    private javax.swing.JTable tblHistorico;
+    private javax.swing.JTable tblIngresos;
     private javax.swing.JTextField txt_iden;
     // End of variables declaration//GEN-END:variables
 }
